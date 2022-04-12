@@ -1,0 +1,50 @@
+.featured {
+}
+
+.scoreItem {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	justify-content: center;
+	margin: 20px;
+	padding: 30px;
+	cursor: pointer;
+}
+
+.scoreTitle {
+	font-size: 30px;
+	margin-left: 1.5em;
+}
+
+.npsContainer {
+	background-color: rgb(201, 196, 192);
+	font-size: 30px;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	margin-left: 35px;
+}
+
+.npsScore {
+}
+
+.calendar {
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+	margin-right: 20px;
+	margin-top: -300px;
+	padding: 30px;
+}
+
+.react-calendar_month-view_weekdays {
+	color: gray;
+}
+
+.react-calendar__navigation button {
+	font-size: 1em;
+}
