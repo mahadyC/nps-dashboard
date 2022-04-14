@@ -2,9 +2,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from '@firebase/firestore';
 
-// import { db } from '../../firebase-config';
-// import { collection, getDoc } from 'firebase/firestore';
-
 const firebaseConfig = {
 	apiKey: 'AIzaSyB-sFIFn4Ne4b2Io94-4B1mJO-olC8wzkY',
 	authDomain: 'phz-backend.firebaseapp.com',
