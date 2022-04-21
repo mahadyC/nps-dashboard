@@ -1,6 +1,6 @@
 import React from "react";
 import "./sidebar.css";
-import { LineStyle, Timeline, TrendingUp } from "@material-ui/icons";
+import { LineStyle, Timeline, AccessTime } from "@material-ui/icons";
 
 export default function Sidebar() {
 	return (
@@ -17,10 +17,10 @@ export default function Sidebar() {
 							<Timeline className="sidebarIcon" />
 							Analytics
 						</li>
-						{/* <li className="sidebarListItem">
-							<TrendingUp className="sidebarIcon" />
-							Sales
-						</li> */}
+						<li className="sidebarListItem">
+							<AccessTime className="sidebarIcon" />
+							History
+						</li>
 					</ul>
 				</div>
 			</div>

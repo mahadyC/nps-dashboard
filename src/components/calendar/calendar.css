@@ -1,5 +1,16 @@
 .calendar {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	flex-direction: row;
+	justify-content: right;
+	margin-right: 20px;
+	margin-top: -300px;
+	padding: 30px;
+}
+
+.react-calendar_month-view_weekdays {
+	color: gray;
+}
+
+.react-calendar__navigation button {
+	font-size: 1em;
 }

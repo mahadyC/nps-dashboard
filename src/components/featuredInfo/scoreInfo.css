@@ -13,7 +13,7 @@
 
 .scoreTitle {
 	font-size: 30px;
-	margin-left: 1.5em;
+	margin-left: 5em;
 }
 
 .npsContainer {
@@ -26,25 +26,8 @@
 	align-items: center;
 	justify-content: center;
 	margin-top: 20px;
-	margin-left: 35px;
+	margin-left: 5em;
 }
 
 .npsScore {
-}
-
-.calendar {
-	display: flex;
-	flex-direction: row;
-	justify-content: right;
-	margin-right: 20px;
-	margin-top: -300px;
-	padding: 30px;
-}
-
-.react-calendar_month-view_weekdays {
-	color: gray;
-}
-
-.react-calendar__navigation button {
-	font-size: 1em;
 }
