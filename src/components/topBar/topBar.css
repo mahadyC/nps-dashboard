@@ -1,62 +1,11 @@
-.topbar {
-	width: 100%;
-	height: 100px;
-	background-color: rgb(252, 164, 0);
-	position: sticky;
-	top: 0;
-	z-index: 999;
+.navbar {
+	background-color: orange;
 }
 
-.topbarWrapper {
-	height: 100%;
-	padding: 0px 20px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.brand {
+	margin-right: 20em;
 }
 
-.logo {
-	font-weight: bold;
-	font-size: 30px;
-	color: rgb(8, 8, 8);
-	cursor: pointer;
-}
-
-.title {
-	margin-left: 1em;
-}
-
-.topRight {
-	display: flex;
-	align-items: center;
-}
-
-.topbarIconContainer {
-	position: relative;
-	cursor: pointer;
-	margin-right: 10px;
-	color: #555;
-}
-
-.topIconBadge {
-	position: absolute;
-	height: 15px;
-	width: 15px;
-	top: -6px;
-	right: -1px;
-	background-color: red;
-	color: white;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 10px;
-}
-
-.topAvatar {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	cursor: pointer;
-	background-color: aqua;
+.link {
+	margin-right: 100px;
 }
