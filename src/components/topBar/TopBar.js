@@ -8,25 +8,31 @@ import Container from "react-bootstrap/Container";
 
 export default function TopBar() {
 	return (
-		<Navbar variant="light" bg="light" expand="lg">
+		<Navbar
+			className="navbar sticky-top shadow-sm color-dark"
+			variant="light"
+			expand="lg"
+		>
 			<Container>
-				<Navbar.Brand href="/"> NPS Dashboard </Navbar.Brand>
+				<Navbar.Brand href="/" className="brand">
+					NPS Dashboard
+				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						<LinkContainer to="/">
+						<LinkContainer className="link" to="/">
 							<Nav.Link href="#home">Home</Nav.Link>
 						</LinkContainer>
-						<LinkContainer to="Responses">
+						<LinkContainer className="link" to="Responses">
 							<Nav.Link href="Responses">Responses</Nav.Link>
 						</LinkContainer>
-						<LinkContainer to="History">
+						<LinkContainer className="link" to="History">
 							<Nav.Link href="History">History</Nav.Link>
 						</LinkContainer>
-						<LinkContainer to="Admin">
+						<LinkContainer className="link" to="Admin">
 							<Nav.Link href="Admin">Admin</Nav.Link>
 						</LinkContainer>
-						<LinkContainer to="Logout">
+						<LinkContainer className="link" to="Logout">
 							<Nav.Link href="Logout">Logout</Nav.Link>
 						</LinkContainer>
 					</Nav>

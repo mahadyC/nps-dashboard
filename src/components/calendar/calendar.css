@@ -1,10 +1,13 @@
 .calendar {
-	display: flex;
+	/* display: flex;
 	flex-direction: row;
-	justify-content: right;
-	margin-right: 20px;
-	margin-top: -300px;
-	padding: 30px;
+	justify-content: right; */
+	position: absolute;
+	top: 80px;
+	right: 70px;
+	/* margin-right: 20px; */
+	/* margin-top: -300px; */
+	/* padding: 30px; */
 }
 
 .react-calendar_month-view_weekdays {

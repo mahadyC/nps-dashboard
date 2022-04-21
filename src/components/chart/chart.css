@@ -1,17 +1,21 @@
 .chart {
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: center; */
 	/* margin-top: 15em; */
-	margin-left: 42.5em;
+	position: absolute;
+	/* margin-left: 42.5em; */
+	bottom: 10px;
+	right: 70px;
 	padding: 5px;
-	width: 44%;
-	height: 40%;
+	width: 40%;
+	height: 36%;
 	box-shadow: 0px 0px 5px 2px lightgray;
 	border-radius: 5px;
 }
 
 .chartTitle {
 	margin-bottom: 20px;
+	text-align: center;
 }
