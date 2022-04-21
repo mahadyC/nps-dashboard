@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './scoreInfo.css';
-import { db } from '../../firebase-config';
-import { collectionGroup, getDocs, query } from 'firebase/firestore';
+import React, { useEffect, useState } from "react";
+import "./scoreInfo.css";
+import { db } from "../../firebase-config";
+import { collectionGroup, getDocs, query } from "firebase/firestore";
 
 export default function ScoreInfo() {
 	const [npsScore, setNspScore] = useState();
@@ -12,7 +12,7 @@ export default function ScoreInfo() {
 	}, []);
 
 	const showNpsScore = async () => {
-		const data = query(collectionGroup(db, 'values'));
+		const data = query(collectionGroup(db, "values"));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -49,7 +49,7 @@ export default function ScoreInfo() {
 				<div className="npsContainer">
 					<div className="npsScore">{npsScore}</div>
 				</div>
-				<div>
+				{/* <div>
 					<h3>List of all answers:</h3>
 					{allAnswers.map((answer, id) => {
 						return (
@@ -58,7 +58,7 @@ export default function ScoreInfo() {
 							</li>
 						);
 					})}
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

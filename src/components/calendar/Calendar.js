@@ -6,6 +6,7 @@ import Footer from "react-multi-date-picker/plugins/range_picker_footer";
 import "react-calendar/dist/Calendar.css";
 import transition from "react-element-popper/animations/transition";
 import InputIcon from "react-multi-date-picker/components/input_icon";
+import "./calendar.css";
 
 export default function Calenders() {
 	const [value, setValue] = useState(new Date());
@@ -15,7 +16,7 @@ export default function Calenders() {
 	}
 	return (
 		<div className="calendar">
-			<DatePicker
+			{/* <DatePicker
 				className="picker1"
 				displayWeekNumbers
 				weekNumber="WN"
@@ -32,10 +33,13 @@ export default function Calenders() {
 				render={<InputIcon />}
 				animations={[transition()]}
 				value={value}
-			/>
-			{/* <Calendar
+			/> */}
+			<Calendar
 				range
 				numberOfMonths={2}
+				displayWeekNumbers
+				weekNumber="WN"
+				weekStartDayIndex={1}
 				value={value}
 				onChange={setValue}
 				plugins={[
@@ -46,13 +50,13 @@ export default function Calenders() {
 							selectedDates: "Date range:",
 							from: "From:",
 							to: "To:",
-							selectDate: "select",
+							selectDate: "Select",
 							close: "Close",
 							separator: "-",
 						}}
 					/>,
 				]}
-			/> */}
+			/>
 		</div>
 	);
 }
