@@ -1,4 +1,4 @@
-import "./chart.css";
+import './chart.css';
 import {
 	BarChart,
 	Bar,
@@ -7,42 +7,42 @@ import {
 	Tooltip,
 	Legend,
 	ResponsiveContainer,
-} from "recharts";
+} from 'recharts';
 
 const data = [
 	{
-		name: "Month 1",
+		name: 'Month 1',
 		promoters: 37,
 		passive: 8,
 		detractors: 2,
 	},
 	{
-		name: "Month 2",
+		name: 'Month 2',
 		promoters: 30,
 		passive: 5,
 		detractors: 7,
 	},
 	{
-		name: "Month 3",
+		name: 'Month 3',
 		promoters: 50,
 		passive: 2,
 		detractors: 1,
 	},
 	{
-		name: "Month 4",
+		name: 'Month 4',
 		promoters: 24,
 		passive: 9,
 		detractors: 6,
 	},
 	{
-		name: "Month 5",
+		name: 'Month 5',
 		promoters: 46,
 		passive: 12,
 		detractors: 2,
 	},
 	{
-		name: "Month 6",
-		promoters: 42,
+		name: 'Month 6',
+		promoters: 40,
 		passive: 10,
 		detractors: 3,
 	},
