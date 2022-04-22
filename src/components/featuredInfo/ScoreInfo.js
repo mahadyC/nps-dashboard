@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
-import "./scoreInfo.css";
-import { db } from "../../firebase-config";
-import { collectionGroup, getDocs, query } from "firebase/firestore";
+import React, { useEffect, useState } from 'react';
+import './scoreInfo.css';
+import { db } from '../../firebase-config';
+import { collectionGroup, getDocs, query } from 'firebase/firestore';
+import { PieChart, Pie, Cell, Label, Tooltip } from 'recharts';
 
 export default function ScoreInfo() {
-	const [npsScore, setNspScore] = useState();
-	const [allAnswers, setAllAnswers] = useState([]);
+	const [npsScore, setNpsScore] = useState();
+	const [promoters, setPromoters] = useState();
+	const [passives, setPassives] = useState();
+	const [detractors, setDetractors] = useState();
+	const [npsdata, setNpsdata] = useState([]);
 
 	useEffect(() => {
 		showNpsScore();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const showNpsScore = async () => {
-		const data = query(collectionGroup(db, "values"));
+		const data = query(collectionGroup(db, 'values'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -29,6 +34,7 @@ export default function ScoreInfo() {
 
 		let promoters = 0;
 		let detractors = 0;
+		let passives = 0;
 
 		let i = 0;
 		let l = scores.length;
@@ -36,29 +42,53 @@ export default function ScoreInfo() {
 		for (i; i < l; i++) {
 			if (scores[i] >= 9) promoters++;
 			if (scores[i] <= 6) detractors++;
+			if (scores[i] > 6 && scores[i] < 9) passives++;
 		}
-		const nspScoreCalc = Math.round((promoters / l - detractors / l) * 100);
-		setNspScore(nspScoreCalc);
-		setAllAnswers(allResults);
+		const npsScoreCalc = Math.round((promoters / l - detractors / l) * 100);
+		setNpsScore(npsScoreCalc);
+
+		setPromoters(promoters);
+		setPassives(passives);
+		setDetractors(detractors);
+
+		setNpsdata([
+			{ name: 'promoters', value: promoters },
+			{ name: 'passives', value: passives },
+			{ name: 'detractors', value: detractors },
+		]);
 	};
+
+	const COLORS = ['#2A9D8F', '#E2B33C', '#E76F51'];
 
 	return (
 		<div className="score">
 			<div className="scoreItem">
-				<div className="scoreTitle">NPS Score</div>
-				<div className="npsContainer">
-					<div className="npsScore">{npsScore}</div>
-				</div>
-				{/* <div>
-					<h3>List of all answers:</h3>
-					{allAnswers.map((answer, id) => {
-						return (
-							<li key={id}>
-								score: {answer.score}, comments: {answer.comment}
-							</li>
-						);
-					})}
-				</div> */}
+				<h3>Net Promoter Score</h3>
+				<p>for the previous 6 months</p>
+
+				<PieChart width={300} height={207}>
+					<Pie
+						data={npsdata}
+						innerRadius={40}
+						outerRadius={90}
+						paddingAngle={2}
+						dataKey="value"
+					>
+						{npsdata.map((entry, index) => (
+							<Cell
+								key={`cell-${index}`}
+								fill={COLORS[index % COLORS.length]}
+							/>
+						))}
+
+						<Label value={npsScore} position="center" fontSize="2rem" />
+					</Pie>
+					<Tooltip />
+				</PieChart>
+				<p>
+					Hover over the chart to see the number of reponses in different
+					categories.
+				</p>
 			</div>
 		</div>
 	);
