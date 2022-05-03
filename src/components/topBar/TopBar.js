@@ -1,10 +1,10 @@
-import "bootstrap/dist/css/bootstrap.css";
-import React from "react";
-import "./topBar.css";
-import { LinkContainer } from "react-router-bootstrap";
-import Nav from "react-bootstrap/Nav";
-import { Navbar } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
+import 'bootstrap/dist/css/bootstrap.css';
+import React from 'react';
+import './topBar.css';
+import { LinkContainer } from 'react-router-bootstrap';
+import Nav from 'react-bootstrap/Nav';
+import { Navbar } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 
 export default function TopBar() {
 	return (
@@ -20,17 +20,8 @@ export default function TopBar() {
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						{/* <LinkContainer className="link" to="/">
-							<Nav.Link href="#home">Home</Nav.Link>
-						</LinkContainer>
-						<LinkContainer className="link" to="Responses">
-							<Nav.Link href="Responses">Responses</Nav.Link>
-						</LinkContainer>
-						<LinkContainer className="link" to="History">
-							<Nav.Link href="History">History</Nav.Link>
-						</LinkContainer> */}
-						<LinkContainer className="link" to="Dashboard">
-							<Nav.Link href="Dashboard">Dashboard</Nav.Link>
+						<LinkContainer className="link" to="/">
+							<Nav.Link href="#home">Dashboard</Nav.Link>
 						</LinkContainer>
 						<LinkContainer className="link" to="Settings">
 							<Nav.Link href="Settings">Settings</Nav.Link>

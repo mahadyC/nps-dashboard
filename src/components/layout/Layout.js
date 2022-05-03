@@ -1,7 +1,6 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-
-import TopBar from "../topBar/TopBar";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import TopBar from '../topBar/TopBar';
 
 const Layout = () => {
 	return (
