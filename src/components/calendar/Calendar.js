@@ -1,62 +1,130 @@
-import React, { useState } from "react";
-// import Calendar from "react-calendar";
-import DatePicker from "react-multi-date-picker";
-import { Calendar } from "react-multi-date-picker";
-import Footer from "react-multi-date-picker/plugins/range_picker_footer";
+import React, { useEffect } from "react";
 import "react-calendar/dist/Calendar.css";
-import transition from "react-element-popper/animations/transition";
-import InputIcon from "react-multi-date-picker/components/input_icon";
+import firebase from "firebase/compat/app";
+import "firebase/auth";
+import "firebase/firestore";
+import { db } from "../../firebase-config";
+import { collectionGroup, getDocs, query } from "firebase/firestore";
 import "./calendar.css";
+import dayjs from "dayjs";
 
 export default function Calenders() {
-	const [value, setValue] = useState(new Date());
+	// useEffect(() => {
+	// 	showNpsScore();
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
-	function onChange(nextValue) {
-		setValue(nextValue);
-	}
+	// const showNpsScore = async () => {
+	// 	const data = query(collectionGroup(db, "values"));
+	// 	const querySnapshot = await getDocs(data);
+
+	// 	const allResults = [];
+
+	// 	querySnapshot.forEach((doc) => {
+	// 		allResults.push(doc.data());
+	// 		// console.log(allResults);
+	// 	});
+
+	// 	const timestamps = [];
+
+	// 	for (let response of allResults) {
+	// 		// response.timestamp.toDate();
+	// 		timestamps.push(response.timestamp);
+	// 	}
+	// 	console.log(timestamps);
+
+	// 	console.log(allResults[0].timestamp.toDate());
+	// };
+
+	const showData = async (e) => {
+		e.preventDefault();
+
+		const data = query(collectionGroup(db, "values"));
+		const querySnapshot = await getDocs(data);
+
+		const allResults = [];
+
+		querySnapshot.forEach((doc) => {
+			allResults.push(doc.data());
+			console.log(allResults);
+		});
+
+		const timestamps = [];
+
+		for (let response of allResults) {
+			// response.timestamp.toDate();
+			timestamps.push(response.timestamp);
+		}
+		console.log(timestamps);
+
+		// const createdAt = firebase.firestore.timestamp.fromDate(new Date());
+
+		// const formatDate = dayjs.unix(createdAt.seconds).format("YYYY-MM-DD");
+
+		// const formattedTimestamp = allResults.timestamp.toDate();
+
+		// console.log(formattedTimestamp);
+
+		// const formattedDate = formattedTimestamp.toISOString().slice(0, 10);
+		// console.log(formattedDate);
+
+		const timestamp0 = allResults[0].timestamp.toDate();
+		console.log(timestamp0);
+
+		const formatDate = timestamp0.toISOString().slice(0, 10);
+		console.log(formatDate);
+
+		const timestamp1 = allResults[3].timestamp.toDate();
+		console.log(timestamp1);
+
+		const formatDate2 = timestamp1.toISOString().slice(0, 10);
+		console.log(formatDate2);
+
+		// const timestamp0 = allResults[0].timestamp.newDate();
+		// const dateStr = timestamp0.toISOString();
+		// console.log(dateStr);
+
+		// const date = new Date();
+		// const dateStr = date.toISOString();
+		// console.log(dateStr);
+
+		// const date = {
+		// 	convert: function (timestamp0) {
+		// 		return timestamp0.constructor === String ? new Date(timestamp0) : NaN;
+		// 	},
+		// };
+
+		const from = e.target.fromDate.value;
+		const to = e.target.toDate.value;
+		console.log(from, "-", to);
+		if (formatDate == from && formatDate2 == to) {
+			console.log(formatDate.score + formatDate2.score);
+		} else {
+			console.log("nooooo");
+		}
+	};
+
+	// {
+	// 	allResults
+	// 		.filter(
+	// 			(allResults) =>
+	// 				allResults.timeStamp >= from || allResults.timeStamp <= to
+	// 		)
+	// 		.map((filteredResult) => ({ filteredResult }));
+	// }
+	// console.log(allResults);
+
 	return (
-		<div className="calendar">
-			{/* <DatePicker
-				className="picker1"
-				displayWeekNumbers
-				weekNumber="WN"
-				weekStartDayIndex={1}
-				render={<InputIcon />}
-				animations={[transition()]}
-				value={value}
-			/>
-			<DatePicker
-				className="picker2"
-				displayWeekNumbers
-				weekNumber="WN"
-				weekStartDayIndex={1}
-				render={<InputIcon />}
-				animations={[transition()]}
-				value={value}
-			/> */}
-			<Calendar
-				range
-				numberOfMonths={2}
-				displayWeekNumbers
-				weekNumber="WN"
-				weekStartDayIndex={1}
-				value={value}
-				onChange={setValue}
-				plugins={[
-					<Footer
-						position="bottom"
-						format="MMM DD"
-						names={{
-							selectedDates: "Date range:",
-							from: "From:",
-							to: "To:",
-							selectDate: "Select",
-							close: "Close",
-							separator: "-",
-						}}
-					/>,
-				]}
-			/>
+		<div className="calendar1">
+			<form onSubmit={showData}>
+				<label htmlFor="from">
+					From: <input type="date" id="fromDate" />
+				</label>
+				<label htmlFor="to">
+					To: <input type="date" id="toDate" />
+				</label>
+				<button>Show Data</button>
+			</form>
 		</div>
 	);
 }
