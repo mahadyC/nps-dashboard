@@ -1,4 +1,4 @@
-import './chart.css';
+import '../App.css';
 import {
 	BarChart,
 	Bar,
@@ -50,8 +50,11 @@ const data = [
 
 export default function Chart() {
 	return (
-		<div className="chart">
-			<h3 className="chartTitle">NPS questionnaire answers</h3>
+		<div className="chart-wrapper">
+			<div className="card-header-wrapper">
+				<div className="cards-header">NPS &amp; Responses Trends </div>
+				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+			</div>
 			<ResponsiveContainer width="100%" height="80%">
 				<BarChart
 					width={200}
