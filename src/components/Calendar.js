@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import "react-calendar/dist/Calendar.css";
-import firebase from "firebase/compat/app";
-import "firebase/auth";
-import "firebase/firestore";
-import { db } from "../../firebase-config";
-import { collectionGroup, getDocs, query } from "firebase/firestore";
-import "./calendar.css";
-import dayjs from "dayjs";
+import React, { useEffect } from 'react';
+import 'react-calendar/dist/Calendar.css';
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { db } from '../firebase-config';
+import { collectionGroup, getDocs, query } from 'firebase/firestore';
+import '../App.css';
+import dayjs from 'dayjs';
 
-export default function Calenders() {
+export default function Calendar() {
 	// useEffect(() => {
 	// 	showNpsScore();
 	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,7 +39,7 @@ export default function Calenders() {
 	const showData = async (e) => {
 		e.preventDefault();
 
-		const data = query(collectionGroup(db, "values"));
+		const data = query(collectionGroup(db, 'values'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -96,11 +96,11 @@ export default function Calenders() {
 
 		const from = e.target.fromDate.value;
 		const to = e.target.toDate.value;
-		console.log(from, "-", to);
+		console.log(from, '-', to);
 		if (formatDate == from && formatDate2 == to) {
 			console.log(formatDate.score + formatDate2.score);
 		} else {
-			console.log("nooooo");
+			console.log('nooooo');
 		}
 	};
 
@@ -123,7 +123,9 @@ export default function Calenders() {
 				<label htmlFor="to">
 					To: <input type="date" id="toDate" />
 				</label>
-				<button>Show Data</button>
+				<button type="submit" className="show-button">
+					Show Data
+				</button>
 			</form>
 		</div>
 	);

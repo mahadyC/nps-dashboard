@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../firebase-config';
+import { db } from '../firebase-config';
 import { collectionGroup, getDocs, query } from 'firebase/firestore';
-import './responses.css';
+import '../App.css';
 
 export default function Responses() {
 	const [allResponses, setAllResponses] = useState([]);
@@ -26,14 +26,21 @@ export default function Responses() {
 
 	return (
 		<div className="responses-wrapper">
-			<h3>All responses:</h3>
-			{allResponses.map((answer, id) => {
-				return (
-					<li key={id}>
-						score: {answer.score}, comments: {answer.comment}
-					</li>
-				);
-			})}
+			<div className="card-header-wrapper">
+				<div className="cards-header">Responses</div>
+				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+			</div>
+			<div className="responses-list">
+				{allResponses.map((answer, id) => {
+					return (
+						<div className="response" key={id}>
+							<span>{answer.score}</span>
+							<span className="response-date">2022-02-02</span>
+							<span className="response-comment">{answer.comment}</span>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

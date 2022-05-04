@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './scoreInfo.css';
-import { db } from '../../firebase-config';
+import { db } from '../firebase-config';
 import { collectionGroup, getDocs, query } from 'firebase/firestore';
 import { PieChart, Pie, Cell, Label, Tooltip } from 'recharts';
+import '../App.css';
 
 export default function ScoreInfo() {
 	const [npsScore, setNpsScore] = useState();
@@ -61,16 +61,17 @@ export default function ScoreInfo() {
 	const COLORS = ['#2A9D8F', '#E2B33C', '#E76F51'];
 
 	return (
-		<div className="score">
+		<div className="nps-wrapper">
+			<div className="card-header-wrapper">
+				<div className="cards-header">Net Promoter Score</div>
+				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+			</div>
 			<div className="scoreItem">
-				<h3>Net Promoter Score</h3>
-				<p>for the previous 6 months</p>
-
-				<PieChart width={300} height={207}>
+				<PieChart width={250} height={150}>
 					<Pie
 						data={npsdata}
 						innerRadius={40}
-						outerRadius={90}
+						outerRadius={60}
 						paddingAngle={2}
 						dataKey="value"
 					>
@@ -85,10 +86,6 @@ export default function ScoreInfo() {
 					</Pie>
 					<Tooltip />
 				</PieChart>
-				<p>
-					Hover over the chart to see the number of reponses in different
-					categories.
-				</p>
 			</div>
 		</div>
 	);

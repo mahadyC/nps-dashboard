@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import TopBar from '../topBar/TopBar';
+import TopBar from '../components/TopBar';
 
 const Layout = () => {
 	return (
-		<div>
+		<div className="background">
 			<TopBar />
 			<main>
 				<Outlet />
