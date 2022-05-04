@@ -9,6 +9,7 @@ export default function ScoreInfo() {
 	const [promoters, setPromoters] = useState();
 	const [passives, setPassives] = useState();
 	const [detractors, setDetractors] = useState();
+	const [total, setTotal] = useState();
 	const [npsdata, setNpsdata] = useState([]);
 
 	useEffect(() => {
@@ -50,6 +51,7 @@ export default function ScoreInfo() {
 		setPromoters(promoters);
 		setPassives(passives);
 		setDetractors(detractors);
+		setTotal(l);
 
 		setNpsdata([
 			{ name: 'promoters', value: promoters },
@@ -58,7 +60,7 @@ export default function ScoreInfo() {
 		]);
 	};
 
-	const COLORS = ['#2A9D8F', '#E2B33C', '#E76F51'];
+	const COLORS = ['#05A8AA', '#FFCB5C', '#F07F4E'];
 
 	return (
 		<div className="nps-wrapper">
@@ -67,11 +69,11 @@ export default function ScoreInfo() {
 				<div className="card-header-dates">01.01.2022-30.06.2022</div>
 			</div>
 			<div className="scoreItem">
-				<PieChart width={250} height={150}>
+				<PieChart width={100} height={100}>
 					<Pie
 						data={npsdata}
-						innerRadius={40}
-						outerRadius={60}
+						innerRadius={35}
+						outerRadius={50}
 						paddingAngle={2}
 						dataKey="value"
 					>
@@ -86,6 +88,20 @@ export default function ScoreInfo() {
 					</Pie>
 					<Tooltip />
 				</PieChart>
+				<div className="nps-categories">
+					<p>
+						<span className="sum-number">{promoters}</span> promoters
+					</p>
+					<p>
+						<span className="sum-number">{passives}</span> passives
+					</p>
+					<p>
+						<span className="sum-number">{detractors} </span>detractors
+					</p>
+					<p>
+						<span className="sum-number">{total} </span>total responses
+					</p>
+				</div>
 			</div>
 		</div>
 	);
