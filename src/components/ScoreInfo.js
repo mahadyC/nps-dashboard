@@ -65,7 +65,7 @@ export default function ScoreInfo() {
 	return (
 		<div className="nps-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header">Net Promoter Score</div>
+				<div className="cards-header">Net Promoter Score (NPS) </div>
 				<div className="card-header-dates">01.01.2022-30.06.2022</div>
 			</div>
 			<div className="scoreItem">
@@ -84,23 +84,39 @@ export default function ScoreInfo() {
 							/>
 						))}
 
-						<Label value={npsScore} position="center" fontSize="2rem" />
+						<Label
+							value={npsScore}
+							position="center"
+							fontFamily="Rubik"
+							fontWeight={500}
+							fontSize="2rem"
+							fill="#2E282A"
+						/>
 					</Pie>
 					<Tooltip />
 				</PieChart>
 				<div className="nps-categories">
-					<p>
-						<span className="sum-number">{promoters}</span> promoters
-					</p>
-					<p>
-						<span className="sum-number">{passives}</span> passives
-					</p>
-					<p>
-						<span className="sum-number">{detractors} </span>detractors
-					</p>
-					<p>
-						<span className="sum-number">{total} </span>total responses
-					</p>
+					<div className="nps-one-category">
+						<div className="nps-category-circle-promoters"></div>
+						<div className="sum-number">{promoters}</div>
+						<div className="nps-category-name">Promoters</div>
+					</div>
+					<div className="nps-one-category">
+						<div className="nps-category-circle-passives"></div>
+						<div className="sum-number">{passives}</div>
+						<div className="nps-category-name">Passives</div>
+					</div>
+					<div className="nps-one-category">
+						<div className="nps-category-circle-detractors"></div>
+						<div className="sum-number">{detractors}</div>
+						<div className="nps-category-name">Detractors</div>
+					</div>
+					<div className="nps-category-line"></div>
+					<div className="nps-one-category">
+						<div className="nps-category-circle-total"></div>
+						<div className="sum-number">{total}</div>
+						<div className="nps-category-name">Total responses</div>
+					</div>
 				</div>
 			</div>
 		</div>

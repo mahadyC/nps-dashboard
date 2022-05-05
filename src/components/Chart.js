@@ -1,45 +1,45 @@
-import "../App.css";
-import Chart from "chart.js/auto";
-import { Bar } from "react-chartjs-2";
+import '../App.css';
+import Chart from 'chart.js/auto';
+import { Bar } from 'react-chartjs-2';
 
 const scores = [
 	{
-		name: "January",
+		name: 'January',
 		promoters: 37,
 		passive: 8,
 		detractors: 2,
 		nps: 100,
 	},
 	{
-		name: "February",
+		name: 'February',
 		promoters: 30,
 		passive: 5,
 		detractors: 7,
 		nps: 62,
 	},
 	{
-		name: "March",
+		name: 'March',
 		promoters: 50,
 		passive: 2,
 		detractors: 1,
 		nps: -100,
 	},
 	{
-		name: "April",
+		name: 'April',
 		promoters: 24,
 		passive: 9,
 		detractors: 6,
 		nps: 22,
 	},
 	{
-		name: "May",
+		name: 'May',
 		promoters: 46,
 		passive: 12,
 		detractors: 2,
 		nps: -15,
 	},
 	{
-		name: "June",
+		name: 'June',
 		promoters: 80,
 		passive: 10,
 		detractors: 3,
@@ -48,43 +48,43 @@ const scores = [
 ];
 
 const data = {
-	labels: ["January", "February", "March", "April", "June", "July"],
+	labels: ['January', 'February', 'March', 'April', 'June', 'July'],
 	datasets: [
 		{
-			label: "NPS",
+			label: 'NPS',
 			data: scores.map((scores) => scores.nps),
-			borderColor: "#512768",
-			backgroundColor: "#512768",
-			yAxisID: "y1",
-			type: "line",
+			borderColor: '#2E282A',
+			backgroundColor: '#2E282A',
+			yAxisID: 'y1',
+			type: 'line',
 		},
 		{
-			label: "Promoters",
+			label: 'Promoters',
 			data: scores.map((scores) => scores.promoters),
-			borderColor: "#05A8AA",
-			backgroundColor: "#05A8AA",
-			yAxisID: "y",
-			type: "bar",
+			borderColor: '#05A8AA',
+			backgroundColor: '#05A8AA',
+			yAxisID: 'y',
+			type: 'bar',
 			stacked: true,
 			barThickness: 20,
 		},
 		{
-			label: "Passive",
+			label: 'Passives',
 			data: scores.map((scores) => scores.passive),
-			borderColor: "#FFCB5C",
-			backgroundColor: "#FFCB5C",
-			yAxisID: "y",
-			type: "bar",
+			borderColor: '#FFCB5C',
+			backgroundColor: '#FFCB5C',
+			yAxisID: 'y',
+			type: 'bar',
 			stacked: true,
 			barThickness: 20,
 		},
 		{
-			label: "Detractors",
+			label: 'Detractors',
 			data: scores.map((scores) => scores.detractors),
-			borderColor: "#F07F4E",
-			backgroundColor: "#F07F4E",
-			yAxisID: "y",
-			type: "bar",
+			borderColor: '#F07F4E',
+			backgroundColor: '#F07F4E',
+			yAxisID: 'y',
+			type: 'bar',
 			stacked: true,
 			barThickness: 20,
 		},
@@ -112,8 +112,8 @@ export default function ChartData() {
 							delay: (context) => {
 								let delay = 0;
 								if (
-									context.type === "data" &&
-									context.mode === "default" &&
+									context.type === 'data' &&
+									context.mode === 'default' &&
 									!delayed
 								) {
 									delay = context.dataIndex * 300 + context.datasetIndex * 100;
@@ -123,7 +123,7 @@ export default function ChartData() {
 						},
 						responsive: true,
 						interaction: {
-							mode: "index",
+							mode: 'index',
 							intersect: false,
 						},
 						plugins: {
@@ -137,24 +137,24 @@ export default function ChartData() {
 								stacked: true,
 							},
 							y: {
-								type: "linear",
+								type: 'linear',
 								display: true,
-								position: "left",
+								position: 'left',
 								stacked: true,
-								borderColor: "rgb(0, 0, 255)",
+								borderColor: 'rgb(0, 0, 255)',
 								title: {
 									display: true,
-									text: "NPS Responses",
+									text: 'NPS Responses',
 									padding: 10,
 								},
 							},
 							y1: {
-								type: "linear",
+								type: 'linear',
 								display: true,
-								position: "right",
+								position: 'right',
 								title: {
 									display: true,
-									text: "NPS Score",
+									text: 'NPS Score',
 									padding: 10,
 								},
 								// grid line settings
