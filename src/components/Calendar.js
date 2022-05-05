@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
-import 'react-calendar/dist/Calendar.css';
-import firebase from 'firebase/compat/app';
-import 'firebase/auth';
-import 'firebase/firestore';
-import { db } from '../firebase-config';
-import { collectionGroup, getDocs, query } from 'firebase/firestore';
-import '../App.css';
-import dayjs from 'dayjs';
+import React, { useEffect } from "react";
+import firebase from "firebase/compat/app";
+import "firebase/auth";
+import "firebase/firestore";
+import { db } from "../firebase-config";
+import { collectionGroup, getDocs, query } from "firebase/firestore";
+import "../App.css";
 
 export default function Calendar() {
 	// useEffect(() => {
@@ -39,7 +37,7 @@ export default function Calendar() {
 	const showData = async (e) => {
 		e.preventDefault();
 
-		const data = query(collectionGroup(db, 'values'));
+		const data = query(collectionGroup(db, "values"));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -96,11 +94,11 @@ export default function Calendar() {
 
 		const from = e.target.fromDate.value;
 		const to = e.target.toDate.value;
-		console.log(from, '-', to);
+		console.log(from, "-", to);
 		if (formatDate == from && formatDate2 == to) {
 			console.log(formatDate.score + formatDate2.score);
 		} else {
-			console.log('nooooo');
+			console.log("nooooo");
 		}
 	};
 
