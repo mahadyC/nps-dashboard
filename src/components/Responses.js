@@ -34,9 +34,14 @@ export default function Responses() {
 				{allResponses.map((answer, id) => {
 					return (
 						<div className="response" key={id}>
-							<span>{answer.score}</span>
-							<span className="response-date">2022-02-02</span>
-							<span className="response-comment">{answer.comment}</span>
+							<div className="response-colour-code-wrapper">
+								<div className="response-colour-code"></div>
+								<div className="response-score">{answer.score}</div>
+							</div>
+							<div className="response-date-and-comment-wrapper">
+								<span className="response-date">2022-02-02</span>
+								<span className="response-comment">{answer.comment}</span>
+							</div>
 						</div>
 					);
 				})}
