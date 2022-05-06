@@ -62,9 +62,7 @@ export default function Calendar() {
 		let calendarEndDate = {yy: eDate.getFullYear(), mm: eDate.getMonth() + 1, dd: eDate.getDate()}
 		setCalenderTo(calendarEndDate);
 	}
-	
-	// Lift data fetching to Home then pass it to Calender
-	// Replace Responses and ScoreInfo inside Calender
+
 
 	return (
 		<div className="calendar1">
