@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code&family=Georama:wght@600;700&family=Rubik:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Georama:wght@600;700&family=Rubik:wght@400;500;700&display=swap');
 
 * {
 	margin: 0;
@@ -13,19 +13,17 @@
 /******** Navbar ********/
 
 .navbar {
-	font-family: "Georama";
+	font-family: 'Georama';
 	font-style: normal;
 	font-weight: 700;
 	font-size: 20px;
-	color: #2e282a;
 }
 
 a.navbar-brand {
-	font-family: "Georama";
+	font-family: 'Georama';
 	font-style: normal;
 	font-weight: 700;
 	font-size: 32px;
-	color: #2e282a;
 }
 
 /******** Dashboard ********/
@@ -40,18 +38,22 @@ a.navbar-brand {
 	display: grid;
 	grid-gap: 1.2rem;
 	grid-template-areas:
-		"a d"
-		"b d"
-		"b d"
-		"b d"
-		"c d"
-		"c d"
-		"c d"
-		"c d"
-		"c d"
-		"c d";
-	grid-template-rows: repeat(10, 6.5%);
+		'a d'
+		'b d'
+		'b d'
+		'b d'
+		'c d'
+		'c d'
+		'c d'
+		'c d'
+		'c d'
+		'c d';
+	grid-template-rows: repeat(10, 7.2%);
 	grid-template-columns: repeat(2, 45vw);
+	box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.14);
+	background-color: rgba(0, 0, 0, 0.12);
+	border-radius: 15px;
+	height: 90vh;
 }
 
 .card-header-wrapper {
@@ -92,9 +94,8 @@ a.navbar-brand {
 	align-items: center;
 	grid-area: a;
 	background-color: #eb895f;
-	box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.13);
 	border-radius: 15px;
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 700;
 	font-size: 18px;
@@ -120,7 +121,7 @@ label {
 	text-transform: uppercase;
 	min-width: 135px;
 	height: 2.2rem;
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 700;
 	font-size: 16px;
@@ -131,7 +132,6 @@ label {
 .nps-wrapper {
 	grid-area: b;
 	background-color: white;
-	box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.13);
 	border-radius: 15px;
 }
 
@@ -140,26 +140,69 @@ label {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	padding: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 1rem;
 	width: 100%;
 	height: 80%;
 }
 
-.nps-categories p {
-	line-height: 50%;
-	font-family: "Rubik";
+.nps-one-category {
+	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 20px;
+	font-size: 18px;
 	color: #2e282a;
+	display: flex;
+	align-items: center;
+	line-height: 160%;
 }
 
 .sum-number {
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 500;
 	font-size: 22px;
 	color: #2e282a;
+	margin-left: 1.5rem;
+	width: 60px;
+}
+
+.nps-category-circle-promoters {
+	height: 25px;
+	width: 25px;
+	border: none;
+	border-radius: 50%;
+	background-color: #05a8aa;
+}
+
+.nps-category-circle-passives {
+	height: 25px;
+	width: 25px;
+	border: none;
+	border-radius: 50%;
+	background-color: #ffcb5c;
+}
+
+.nps-category-circle-detractors {
+	height: 25px;
+	width: 25px;
+	border: none;
+	border-radius: 50%;
+	background-color: #f07f4e;
+}
+
+.nps-category-circle-total {
+	height: 30px;
+	width: 25px;
+	border: none;
+	border-radius: 50%;
+}
+
+.nps-category-line {
+	height: 1px;
+	width: 200px;
+	background-color: #c4c4c4;
+	margin-left: 40px;
 }
 
 /******** Chart ********/
@@ -167,22 +210,10 @@ label {
 .chart-wrapper {
 	grid-area: c;
 	background-color: white;
-	box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.13);
 	border-radius: 15px;
 }
 
 .chart {
-	/* display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center; */
-	/* margin-top: 15em; */
-	/* position: absolute; */
-	/* margin-left: 42.5em; */
-	/* bottom: 10px;
-	right: 70px; */
-	/* margin-left: 25rem;
-	margin-top: 5rem; */
 	width: 100%;
 }
 
@@ -191,7 +222,6 @@ label {
 .responses-wrapper {
 	grid-area: d;
 	background-color: white;
-	box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.13);
 	border-radius: 15px;
 }
 
@@ -211,7 +241,7 @@ label {
 }
 
 .response-date {
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
@@ -220,7 +250,7 @@ label {
 }
 
 .response-comment {
-	font-family: "Rubik";
+	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 16px;
@@ -265,7 +295,7 @@ label {
 	width: 90%;
 	padding: 2rem;
 	background-color: #fafafa;
-	font-family: "Fira Code";
+	font-family: 'Fira Code';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
