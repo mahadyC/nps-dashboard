@@ -23,7 +23,7 @@ export default function Responses() {
 
 		setAllResponses(allResults);
 	};
-
+	// console.log(allResponses)
 	return (
 		<div className="responses-wrapper">
 			<div className="card-header-wrapper">
