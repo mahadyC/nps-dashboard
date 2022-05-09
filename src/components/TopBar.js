@@ -32,16 +32,14 @@ export default function TopBar() {
 				<Navbar.Brand href="/">NPS</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse className="justify-content-end">
-					<Navbar.Text>
-						<Nav className="me-auto">
-							<LinkContainer to="/">
-								<Nav.Link>Dashboard</Nav.Link>
-							</LinkContainer>
-							<LinkContainer to="settings">
-								<Nav.Link>Settings</Nav.Link>
-							</LinkContainer>
-						</Nav>
-					</Navbar.Text>
+					<Nav>
+						<LinkContainer to="/">
+							<Nav.Link>Dashboard</Nav.Link>
+						</LinkContainer>
+						<LinkContainer to="settings">
+							<Nav.Link>Settings</Nav.Link>
+						</LinkContainer>
+					</Nav>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
