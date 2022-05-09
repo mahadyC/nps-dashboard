@@ -12,7 +12,7 @@ export default function Responses() {
 	}, []);
 
 	const showAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values'));
+		const data = query(collectionGroup(db, 'values2'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -35,11 +35,27 @@ export default function Responses() {
 					return (
 						<div className="response" key={id}>
 							<div className="response-colour-code-wrapper">
-								<div className="response-colour-code"></div>
-								<div className="response-score">{answer.score}</div>
+								<div
+									className={`response-colour-code ${
+										answer.score >= 9 ? 'promoters-line' : ''
+									} ${answer.score <= 6 ? 'detractors-line' : ''} ${
+										answer.score > 6 && answer.score < 9 ? 'passives-line' : ''
+									}`}
+								></div>
+								<div
+									className={`response-score ${
+										answer.score >= 9 ? 'promoters' : ''
+									} ${answer.score <= 6 ? 'detractors' : ''} ${
+										answer.score > 6 && answer.score < 9 ? 'passives' : ''
+									}`}
+								>
+									{answer.score}
+								</div>
 							</div>
 							<div className="response-date-and-comment-wrapper">
-								<span className="response-date">2022-02-02</span>
+								<span className="response-date">
+									{answer.date.yyyy}/{answer.date.mm}/{answer.date.dd}
+								</span>
 								<span className="response-comment">{answer.comment}</span>
 							</div>
 						</div>
