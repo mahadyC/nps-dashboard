@@ -1,87 +1,96 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase/compat/app";
 import "firebase/auth";
 import "firebase/firestore";
 import { db } from "../firebase-config";
 import { collectionGroup, getDocs, query } from "firebase/firestore";
 import "../App.css";
 
-import ScoreInfo from '../components/ScoreInfo';
-import Responses from '../components/Responses';
-import Chart from '../components/Chart';
-
-
+import ScoreInfo from "../components/ScoreInfo";
+import Responses from "../components/Responses";
+import Chart from "../components/Chart";
 
 export default function Calendar() {
+	let [sortedData, setSortedData] = useState([]);
+	let [initialData, setInitialData] = useState([]);
 
-	let [calendarFrom, setCalenderFrom] = useState({});
-	let [calendarTo, setCalenderTo] = useState({});
+	useEffect(() => {
+		showAllResponses();
+	}, []);
 
+	const showAllResponses = async () => {
+		const data = query(collectionGroup(db, "values2"));
+		const querySnapshot = await getDocs(data);
 
-	let arr = [
-		{ date: { yy: 2022, mm: 3, dd: 2 }, score: 9 },
-		{ date: { yy: 2022, mm: 3, dd: 2 }, score: 9  },
-		{ date: { yy: 2022, mm: 3, dd: 2 }, score: 9  },
-		{ date: { yy: 2022, mm: 2, dd: 2 }, score: 9  },
-    	{ date: { yy: 2022, mm: 2, dd: 2 }, score: 9  },
-    	{ date: { yy: 2022, mm: 2, dd: 2 }, score: 9  },
-    	{ date: { yy: 2022, mm: 1, dd: 2 }, score: 9  },
-   	 	{ date: { yy: 2022, mm: 1, dd: 2 }, score: 7  },
-    	{ date: { yy: 2022, mm: 1, dd: 2 }, score: 8  },
-    	{ date: { yy: 2022, mm: 1, dd: 2 }, score: 9  }
-	];
-	
-	let sortByMonth = (startDate, endDate) => {
-		console.log(startDate, endDate)
-		let sortIndexes = { indexStart: 0, indexEnd: 0 };
-		sortIndexes.indexStart = arr.findIndex(item => (item.date.yy === startDate.yy && item.date.mm === startDate.mm));
-	    for(let i = 0; i < arr.length; i++){
-	      if(arr[i].date.yy === endDate.yy && arr[i].date.mm === endDate.mm) sortIndexes.indexEnd = arr.indexOf(arr[i]);
-    }
-	    return arr.slice(sortIndexes.indexStart, sortIndexes.indexEnd + 1);
+		const allResults = [];
+
+		querySnapshot.forEach(doc => {
+			allResults.push(doc.data());
+		});
+		allResults.sort((a, b) => b.date.yyyy - a.date.yyyy);
+		setInitialData(allResults);
 	};
 
-	console.log(sortByMonth({ yy: 2022, mm: 1, dd: 2 }, { yy: 2022, mm: 3, dd: 2 }))
-	// Create a form handler function in Calender
+	let sortByMonth = (initialData) => {
+		let startingDate = new Date();
+		startingDate.setMonth(startingDate.getMonth() - 6);
+		let endingDate = new Date();
 
-	let formHandler = (e) => {
-		e.preventDefault();
-		console.log(sortByMonth(calendarFrom, calendarTo))
-	}
+		let startDate = {
+			yy: startingDate.getFullYear(),
+			mm: startingDate.getMonth(),
+		};
+		let endDate = { yy: endingDate.getFullYear(), mm: endingDate.getMonth() };
 
-	// console.log(calendarFrom, calendarTo);
+		let sortIndexes = { indexStart: 0, indexEnd: 0 };
+		for (let i = 0; i < initialData.length; i++) {
+			if (
+				initialData[i].date.yyyy === startDate.yy &&
+				initialData[i].date.mm === startDate.mm
+			)
+				sortIndexes.indexStart = initialData.indexOf(initialData[i]);
+		}
+		sortIndexes.indexEnd = initialData.findIndex(
+			item => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
+		);
 
-	let fromChangeHandler = (e) => {
-		let sDate = new Date(e.target.value);
-		let calendarStartDate = {yy: sDate.getFullYear(), mm: sDate.getMonth() + 1, dd: sDate.getDate()}
-		setCalenderFrom(calendarStartDate)
-	}
+		return initialData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
+	};
 
-	let toChangeHandler = (e) => {
-		let eDate = new Date(e.target.value);
-		let calendarEndDate = {yy: eDate.getFullYear(), mm: eDate.getMonth() + 1, dd: eDate.getDate()}
-		setCalenderTo(calendarEndDate);
-	}
-
+	useEffect(() => {
+		let data = sortByMonth(initialData);
+		setSortedData(data);
+	},[initialData]);
 
 	return (
-		<div className="calendar1">
-			<form onSubmit={formHandler}>
-				<div>
-					<label htmlFor="from">
-						From: <input type="date" id="fromDate" required onChange={fromChangeHandler}/>
-					</label>
-					<label htmlFor="to">
-						To: <input type="date" id="toDate" required onChange={toChangeHandler}/>
-					</label>
-					<button type="submit" className="show-button">
-						Show Data
-					</button>
+		<div className="dashboard">
+			<div className="gridwrapper">
+			<div className="calendar1">
+					<form>
+						<div>
+							<label htmlFor="from">
+								From:{" "}
+								<input
+									type="date"
+									id="fromDate"
+								/>
+							</label>
+							<label htmlFor="to">
+								To:{" "}
+								<input
+									type="date"
+									id="toDate"
+								/>
+							</label>
+							<button type="submit" className="show-button">
+								Show Data
+							</button>
+						</div>
+					</form>
 				</div>
-			</form>
-			<ScoreInfo />
-			{/* <Chart /> */}
-			<Responses />
+				<ScoreInfo sortedData={sortedData} />
+				<Chart />
+				<Responses sortedData={sortedData} />
+			</div>
 		</div>
 	);
 }

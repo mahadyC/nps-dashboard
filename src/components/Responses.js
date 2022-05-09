@@ -1,29 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase-config';
-import { collectionGroup, getDocs, query } from 'firebase/firestore';
 import '../App.css';
 
-export default function Responses() {
+export default function Responses(props) {
 	const [allResponses, setAllResponses] = useState([]);
 
 	useEffect(() => {
-		showAllResponses();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		setAllResponses(props.sortedData)
+	}, [props.sortedData]);
 
-	const showAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values'));
-		const querySnapshot = await getDocs(data);
-
-		const allResults = [];
-
-		querySnapshot.forEach((doc) => {
-			allResults.push(doc.data());
-		});
-
-		setAllResponses(allResults);
-	};
-	// console.log(allResponses)
 	return (
 		<div className="responses-wrapper">
 			<div className="card-header-wrapper">
@@ -35,7 +19,7 @@ export default function Responses() {
 					return (
 						<div className="response" key={id}>
 							<span>{answer.score}</span>
-							<span className="response-date">2022-02-02</span>
+							<span className="response-date">{answer.date.dd}-{answer.date.mm}-{answer.date.yyyy}</span>
 							<span className="response-comment">{answer.comment}</span>
 						</div>
 					);
