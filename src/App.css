@@ -245,7 +245,6 @@ label {
 	font-weight: 400;
 	font-size: 14px;
 	color: #949494;
-	margin-left: 1rem;
 }
 
 .response-comment {
@@ -254,7 +253,6 @@ label {
 	font-weight: 400;
 	font-size: 16px;
 	color: #2e282a;
-	margin-left: 1rem;
 }
 
 .response-colour-code-wrapper {
@@ -262,18 +260,29 @@ label {
 	align-items: center;
 	width: 45px;
 	height: auto;
+	margin-right: 15px;
 }
 
 .response-colour-code {
 	height: 100%;
 	width: 6px;
-	background-color: #05a8aa;
 	border-top-left-radius: 7px;
 	border-bottom-left-radius: 7px;
 }
 
+.promoters-line {
+	background-color: #05a8aa;
+}
+
+.passives-line {
+	background-color: #ffcb5c;
+}
+
+.detractors-line {
+	background-color: #f07f4e;
+}
+
 .response-score {
-	color: #029092;
 	font-family: 'Rubik';
 	font-style: normal;
 	font-weight: 500;
@@ -281,11 +290,25 @@ label {
 	margin-left: 10px;
 }
 
+.promoters {
+	color: #029092;
+}
+
+.passives {
+	color: #dfae41;
+}
+
+.detractors {
+	color: #f07f4e;
+}
+
 .response-date-and-comment-wrapper {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	padding-right: 0.5rem;
 }
 
 /******** Settings-page ********/
