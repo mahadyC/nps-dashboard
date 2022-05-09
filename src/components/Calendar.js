@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import firebase from "firebase/compat/app";
+import React from "react";
 import "firebase/auth";
 import "firebase/firestore";
 import { db } from "../firebase-config";
@@ -95,7 +94,7 @@ export default function Calendar() {
 		const from = e.target.fromDate.value;
 		const to = e.target.toDate.value;
 		console.log(from, "-", to);
-		if (formatDate == from && formatDate2 == to) {
+		if (formatDate === from && formatDate2 === to) {
 			console.log(formatDate.score + formatDate2.score);
 		} else {
 			console.log("nooooo");
