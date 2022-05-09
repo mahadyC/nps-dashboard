@@ -353,3 +353,25 @@ label {
 	font-weight: 400;
 	font-size: 14px;
 }
+
+.copy-button {
+	background: #3b3141;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	text-transform: uppercase;
+	min-width: 135px;
+	height: 2.2rem;
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.copy-button:hover {
+	background: #944bbb;
+}
+
+.copy-button:active {
+	background: #3b3141;
+}
