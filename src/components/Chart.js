@@ -1,6 +1,8 @@
 import "../App.css";
-import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, registerables } from "chart.js";
+
+ChartJS.register(...registerables);
 
 const scores = [
 	{
@@ -53,8 +55,8 @@ const data = {
 		{
 			label: "NPS",
 			data: scores.map((scores) => scores.nps),
-			borderColor: "#512768",
-			backgroundColor: "#512768",
+			borderColor: "#2E282A",
+			backgroundColor: "#2E282A",
 			yAxisID: "y1",
 			type: "line",
 		},
@@ -69,7 +71,7 @@ const data = {
 			barThickness: 20,
 		},
 		{
-			label: "Passive",
+			label: "Passives",
 			data: scores.map((scores) => scores.passive),
 			borderColor: "#FFCB5C",
 			backgroundColor: "#FFCB5C",

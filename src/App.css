@@ -93,7 +93,7 @@ a.navbar-brand {
 	justify-content: space-evenly;
 	align-items: center;
 	grid-area: a;
-	background-color: #eb895f;
+	background-color: #944bbb;
 	border-radius: 15px;
 	font-family: 'Rubik';
 	font-style: normal;
@@ -114,7 +114,7 @@ label {
 }
 
 .show-button {
-	background: #257c8e;
+	background: #3b3141;
 	border: none;
 	border-radius: 10px;
 	color: white;
@@ -233,11 +233,10 @@ label {
 
 .response {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	border: 1px solid #c4c4c4;
 	border-radius: 7px;
 	margin-bottom: 4px;
-	padding: 3px;
 }
 
 .response-date {
@@ -246,7 +245,6 @@ label {
 	font-weight: 400;
 	font-size: 14px;
 	color: #949494;
-	margin-left: 2rem;
 }
 
 .response-comment {
@@ -255,7 +253,62 @@ label {
 	font-weight: 400;
 	font-size: 16px;
 	color: #2e282a;
-	margin-left: 2rem;
+}
+
+.response-colour-code-wrapper {
+	display: flex;
+	align-items: center;
+	width: 45px;
+	height: auto;
+	margin-right: 15px;
+}
+
+.response-colour-code {
+	height: 100%;
+	width: 6px;
+	border-top-left-radius: 7px;
+	border-bottom-left-radius: 7px;
+}
+
+.promoters-line {
+	background-color: #05a8aa;
+}
+
+.passives-line {
+	background-color: #ffcb5c;
+}
+
+.detractors-line {
+	background-color: #f07f4e;
+}
+
+.response-score {
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 22px;
+	margin-left: 10px;
+}
+
+.promoters {
+	color: #029092;
+}
+
+.passives {
+	color: #dfae41;
+}
+
+.detractors {
+	color: #f07f4e;
+}
+
+.response-date-and-comment-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-right: 0.5rem;
 }
 
 /******** Settings-page ********/
@@ -300,3 +353,26 @@ label {
 	font-weight: 400;
 	font-size: 14px;
 }
+
+.copy-button {
+	background: #3b3141;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	text-transform: uppercase;
+	min-width: 135px;
+	height: 2.2rem;
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.copy-button:hover {
+	background: #944bbb;
+}
+
+.copy-button:active {
+	background: #3b3141;
+}
+

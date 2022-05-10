@@ -52,8 +52,8 @@ export default function Calendar() {
 		sortIndexes.indexEnd = initialData.findIndex(
 			item => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
 		);
-
 		return initialData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
+
 	};
 
 	useEffect(() => {
