@@ -12,8 +12,8 @@ export default function ScoreInfo(props) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		setData(props.sortedData);
-	}, [props.sortedData]);
+		setData(props.filteredData);
+	}, [props.filteredData]);
 
 	let npsCalc = npsCalcArr => {
 		if (npsCalcArr.length === 0) return "data missing to count nps score";

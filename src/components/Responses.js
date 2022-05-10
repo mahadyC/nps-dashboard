@@ -5,8 +5,8 @@ export default function Responses(props) {
 	const [allResponses, setAllResponses] = useState([]);
 
 	useEffect(() => {
-		setAllResponses(props.sortedData)
-	}, [props.sortedData]);
+		setAllResponses(props.filteredData)
+	}, [props.filteredData]);
 
 	return (
 		<div className="responses-wrapper">

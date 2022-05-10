@@ -10,14 +10,14 @@ import Responses from "../components/Responses";
 import Chart from "../components/Chart";
 
 export default function Calendar() {
-	let [sortedData, setSortedData] = useState([]);
+	let [filteredData, setFilteredData] = useState([]);
 	let [initialData, setInitialData] = useState([]);
 
 	useEffect(() => {
-		showAllResponses();
+		getAllResponses();
 	}, []);
 
-	const showAllResponses = async () => {
+	const getAllResponses = async () => {
 		const data = query(collectionGroup(db, "values2"));
 		const querySnapshot = await getDocs(data);
 
@@ -30,7 +30,7 @@ export default function Calendar() {
 		setInitialData(allResults);
 	};
 
-	let sortByMonth = (initialData) => {
+	let filterLastSixMonthsData = (initialData) => {
 		let startingDate = new Date();
 		startingDate.setMonth(startingDate.getMonth() - 6);
 		let endingDate = new Date();
@@ -57,8 +57,8 @@ export default function Calendar() {
 	};
 
 	useEffect(() => {
-		let data = sortByMonth(initialData);
-		setSortedData(data);
+		let data = filterLastSixMonthsData(initialData);
+		setFilteredData(data);
 	},[initialData]);
 
 	return (
@@ -87,9 +87,9 @@ export default function Calendar() {
 						</div>
 					</form>
 				</div>
-				<ScoreInfo sortedData={sortedData} />
+				<ScoreInfo filteredData={filteredData} />
 				<Chart />
-				<Responses sortedData={sortedData} />
+				<Responses filteredData={filteredData} />
 			</div>
 		</div>
 	);
