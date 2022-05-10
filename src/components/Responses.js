@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase-config';
-import { collectionGroup, getDocs, query } from 'firebase/firestore';
 import '../App.css';
 
-export default function Responses() {
+export default function Responses(props) {
 	const [allResponses, setAllResponses] = useState([]);
 
 	useEffect(() => {
-		showAllResponses();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	const showAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values2'));
-		const querySnapshot = await getDocs(data);
-
-		const allResults = [];
-
-		querySnapshot.forEach((doc) => {
-			allResults.push(doc.data());
-		});
-
-		setAllResponses(allResults);
-	};
+		setAllResponses(props.filteredData)
+	}, [props.filteredData]);
 
 	return (
 		<div className="responses-wrapper">

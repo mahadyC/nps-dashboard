@@ -1,19 +1,7 @@
-import '../App.css';
-import React from 'react';
-import ScoreInfo from '../components/ScoreInfo';
-import Chart from '../components/Chart';
-import Calendar from '../components/Calendar';
-import Responses from '../components/Responses';
+import "../App.css";
+
+import Calendar from "../components/Calendar";
 
 export default function Home() {
-	return (
-		<div className="dashboard">
-			<div className="gridwrapper">
-				<Calendar />
-				<ScoreInfo />
-				<Chart />
-				<Responses />
-			</div>
-		</div>
-	);
+	return <Calendar />;
 }
