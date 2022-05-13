@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Cell, Label, Tooltip } from "recharts";
-import "../App.css";
+import React, { useEffect, useState } from 'react';
+import { PieChart, Pie, Cell, Label } from 'recharts';
+import '../App.css';
 
 export default function ScoreInfo(props) {
 	const [npsScore, setNpsScore] = useState();
@@ -15,8 +15,8 @@ export default function ScoreInfo(props) {
 		setData(props.filteredData);
 	}, [props.filteredData]);
 
-	let npsCalc = npsCalcArr => {
-		if (npsCalcArr.length === 0) return "data missing to count nps score";
+	let npsCalc = (npsCalcArr) => {
+		if (npsCalcArr.length === 0) return 'data missing to count nps score';
 		let npsScore;
 		let scores = [];
 
@@ -26,7 +26,7 @@ export default function ScoreInfo(props) {
 
 		let promoters = 0;
 		let detractors = 0;
-		
+
 		for (let j = 0; j < scores.length; j++) {
 			if (scores[j] >= 9) promoters++;
 			if (scores[j] <= 6) detractors++;
@@ -56,13 +56,13 @@ export default function ScoreInfo(props) {
 		setPassives(val.passives);
 		setTotal(val.totalNumOfFeedback);
 		setNpsdata([
-			{ name: "promoters", value: val.promoters },
-			{ name: "passives", value: val.passives },
-			{ name: "detractors", value: val.detractors },
+			{ name: 'promoters', value: val.promoters },
+			{ name: 'passives', value: val.passives },
+			{ name: 'detractors', value: val.detractors },
 		]);
 	}, [data]);
 
-	const COLORS = ["#05A8AA", "#FFCB5C", "#F07F4E"];
+	const COLORS = ['#05A8AA', '#FFCB5C', '#F07F4E'];
 
 	return (
 		<div className="nps-wrapper">
@@ -71,12 +71,12 @@ export default function ScoreInfo(props) {
 				<div className="card-header-dates">01.01.2022-30.06.2022</div>
 			</div>
 			<div className="scoreItem">
-				<PieChart width={100} height={100}>
+				<PieChart width={140} height={140}>
 					<Pie
 						data={npsdata}
-						innerRadius={35}
-						outerRadius={50}
-						paddingAngle={2}
+						innerRadius="65%"
+						outerRadius="100%"
+						paddingAngle={3}
 						dataKey="value"
 					>
 						{npsdata.map((entry, index) => (
@@ -91,12 +91,12 @@ export default function ScoreInfo(props) {
 							position="center"
 							fontFamily="Rubik"
 							fontWeight={500}
-							fontSize="2rem"
+							fontSize="2.2rem"
 							fill="#2E282A"
 						/>
 					</Pie>
-					<Tooltip />
 				</PieChart>
+
 				<div className="nps-categories">
 					<div className="nps-one-category">
 						<div className="nps-category-circle-promoters"></div>
