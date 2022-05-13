@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "firebase/auth";
-import "firebase/firestore";
-import { db } from "../firebase-config";
-import { collectionGroup, getDocs, query } from "firebase/firestore";
-import "../App.css";
+import React, { useState, useEffect } from 'react';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { db } from '../firebase-config';
+import { collectionGroup, getDocs, query } from 'firebase/firestore';
+import '../App.css';
 
-import ScoreInfo from "../components/ScoreInfo";
-import Responses from "../components/Responses";
-import Chart from "../components/Chart";
+import ScoreInfo from '../components/ScoreInfo';
+import Responses from '../components/Responses';
+import Chart from '../components/Chart';
 
 export default function Calendar() {
 	let [filteredData, setFilteredData] = useState([]);
@@ -18,12 +18,12 @@ export default function Calendar() {
 	}, []);
 
 	const getAllResponses = async () => {
-		const data = query(collectionGroup(db, "values2"));
+		const data = query(collectionGroup(db, 'values2'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
 
-		querySnapshot.forEach(doc => {
+		querySnapshot.forEach((doc) => {
 			allResults.push(doc.data());
 		});
 		allResults.sort((a, b) => b.date.yyyy - a.date.yyyy);
@@ -50,21 +50,20 @@ export default function Calendar() {
 				sortIndexes.indexStart = initialData.indexOf(initialData[i]);
 		}
 		sortIndexes.indexEnd = initialData.findIndex(
-			item => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
+			(item) => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
 		);
 		return initialData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
-
 	};
 
 	useEffect(() => {
 		let data = filterLastSixMonthsData(initialData);
 		setFilteredData(data);
-	},[initialData]);
+	}, [initialData]);
 
 	return (
 		<div className="dashboard">
 			<div className="gridwrapper">
-			<div className="calendar1">
+				{/* <div className="calendar1">
 					<form>
 						<div>
 							<label htmlFor="from">
@@ -86,7 +85,7 @@ export default function Calendar() {
 							</button>
 						</div>
 					</form>
-				</div>
+				</div> */}
 				<ScoreInfo filteredData={filteredData} />
 				<Chart />
 				<Responses filteredData={filteredData} />
