@@ -1,64 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase-config';
-import { collectionGroup, getDocs, query } from 'firebase/firestore';
-import { PieChart, Pie, Cell, Label, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, Label } from 'recharts';
 import '../App.css';
 
-export default function ScoreInfo() {
+export default function ScoreInfo(props) {
 	const [npsScore, setNpsScore] = useState();
 	const [promoters, setPromoters] = useState();
 	const [passives, setPassives] = useState();
 	const [detractors, setDetractors] = useState();
 	const [total, setTotal] = useState();
 	const [npsdata, setNpsdata] = useState([]);
+	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		showNpsScore();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		setData(props.filteredData);
+	}, [props.filteredData]);
 
-	const showNpsScore = async () => {
-		const data = query(collectionGroup(db, 'values'));
-		const querySnapshot = await getDocs(data);
+	let npsCalc = (npsCalcArr) => {
+		if (npsCalcArr.length === 0) return 'data missing to count nps score';
+		let npsScore;
+		let scores = [];
 
-		const allResults = [];
-
-		querySnapshot.forEach((doc) => {
-			allResults.push(doc.data());
-		});
-
-		const scores = [];
-
-		for (let answer of allResults) {
-			scores.push(answer.score);
+		for (let i = 0; i < npsCalcArr.length; i++) {
+			scores.push(npsCalcArr[i].score);
 		}
 
 		let promoters = 0;
 		let detractors = 0;
-		let passives = 0;
 
-		let i = 0;
-		let l = scores.length;
-
-		for (i; i < l; i++) {
-			if (scores[i] >= 9) promoters++;
-			if (scores[i] <= 6) detractors++;
-			if (scores[i] > 6 && scores[i] < 9) passives++;
+		for (let j = 0; j < scores.length; j++) {
+			if (scores[j] >= 9) promoters++;
+			if (scores[j] <= 6) detractors++;
 		}
-		const npsScoreCalc = Math.round((promoters / l - detractors / l) * 100);
-		setNpsScore(npsScoreCalc);
 
-		setPromoters(promoters);
-		setPassives(passives);
-		setDetractors(detractors);
-		setTotal(l);
+		let totalNumOfFeedback = scores.length;
+		let passives = totalNumOfFeedback - (promoters + detractors);
 
-		setNpsdata([
-			{ name: 'promoters', value: promoters },
-			{ name: 'passives', value: passives },
-			{ name: 'detractors', value: detractors },
-		]);
+		npsScore = Math.round(
+			((promoters - detractors) / totalNumOfFeedback) * 100
+		);
+
+		return {
+			npsScore: npsScore,
+			promoters: promoters,
+			detractors: detractors,
+			passives: passives,
+			totalNumOfFeedback: totalNumOfFeedback,
+		};
 	};
+
+	useEffect(() => {
+		let val = npsCalc(data);
+		setNpsScore(val.npsScore);
+		setPromoters(val.promoters);
+		setDetractors(val.detractors);
+		setPassives(val.passives);
+		setTotal(val.totalNumOfFeedback);
+		setNpsdata([
+			{ name: 'promoters', value: val.promoters },
+			{ name: 'passives', value: val.passives },
+			{ name: 'detractors', value: val.detractors },
+		]);
+	}, [data]);
 
 	const COLORS = ['#05A8AA', '#FFCB5C', '#F07F4E'];
 
@@ -69,12 +71,12 @@ export default function ScoreInfo() {
 				<div className="card-header-dates">01.01.2022-30.06.2022</div>
 			</div>
 			<div className="scoreItem">
-				<PieChart width={100} height={100}>
+				<PieChart width={140} height={140}>
 					<Pie
 						data={npsdata}
-						innerRadius={35}
-						outerRadius={50}
-						paddingAngle={2}
+						innerRadius="65%"
+						outerRadius="100%"
+						paddingAngle={3}
 						dataKey="value"
 					>
 						{npsdata.map((entry, index) => (
@@ -89,12 +91,12 @@ export default function ScoreInfo() {
 							position="center"
 							fontFamily="Rubik"
 							fontWeight={500}
-							fontSize="2rem"
+							fontSize="2.2rem"
 							fill="#2E282A"
 						/>
 					</Pie>
-					<Tooltip />
 				</PieChart>
+
 				<div className="nps-categories">
 					<div className="nps-one-category">
 						<div className="nps-category-circle-promoters"></div>

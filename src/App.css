@@ -7,7 +7,8 @@
 }
 
 .background {
-	background-color: #f3f1ee;
+	background-color: #e9e7e6;
+	height: 100vh;
 }
 
 /******** Navbar ********/
@@ -31,29 +32,25 @@ a.navbar-brand {
 .dashboard {
 	display: flex;
 	justify-content: center;
-	height: 100vh;
 }
 
 .gridwrapper {
 	display: grid;
 	grid-gap: 1.2rem;
 	grid-template-areas:
-		'a d'
-		'b d'
-		'b d'
-		'b d'
-		'c d'
-		'c d'
-		'c d'
-		'c d'
-		'c d'
-		'c d';
-	grid-template-rows: repeat(10, 7.2%);
-	grid-template-columns: repeat(2, 45vw);
+		'b b b d d'
+		'b b b d d'
+		'c c c d d'
+		'c c c d d'
+		'c c c d d'
+		'c c c d d';
+	grid-template-rows: repeat(6, 12.3vh);
+	grid-template-columns: repeat(5, 17.5vw);
 	box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.14);
 	background-color: rgba(0, 0, 0, 0.12);
 	border-radius: 15px;
-	height: 90vh;
+	max-height: 85vh;
+	margin-top: 0.5rem;
 }
 
 .card-header-wrapper {
@@ -92,7 +89,6 @@ a.navbar-brand {
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	grid-area: a;
 	background-color: #944bbb;
 	border-radius: 15px;
 	font-family: 'Rubik';
@@ -142,8 +138,8 @@ label {
 	justify-content: space-evenly;
 	padding-top: 0.5rem;
 	padding-bottom: 1rem;
-	width: 100%;
 	height: 80%;
+	width: 100%;
 }
 
 .nps-one-category {
@@ -154,7 +150,7 @@ label {
 	color: #2e282a;
 	display: flex;
 	align-items: center;
-	line-height: 160%;
+	line-height: 180%;
 }
 
 .sum-number {
@@ -214,7 +210,13 @@ label {
 }
 
 .chart {
-	width: 100%;
+	width: 95%;
+	padding-left: 3rem;
+	padding-top: 10px;
+}
+
+canvas {
+	max-height: 550px;
 }
 
 /******** Responses ********/
@@ -316,7 +318,6 @@ label {
 .settings-page {
 	display: flex;
 	justify-content: center;
-	height: 100vh;
 }
 
 .nps-survey-wrapper {
