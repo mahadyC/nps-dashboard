@@ -1,3 +1,4 @@
+
 import "../App.css";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
@@ -239,6 +240,7 @@ export default function ChartData(props) {
 			passive: yearMonth4.npsInfo.passives,
 			detractors: yearMonth4.npsInfo.detractors,
 			nps: yearMonth4.npsInfo.npsScore,
+
 		},
 		{
 			name: yearMonth5.monthName,
@@ -305,73 +307,71 @@ export default function ChartData(props) {
 		<div className="chart-wrapper">
 			<div className="card-header-wrapper">
 				<div className="cards-header">NPS &amp; Responses Trends </div>
-				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+				{/* <div className="card-header-dates">01.01.2022-30.06.2022</div> */}
 			</div>
-			<div className="chart">
-				<Bar
-					type="bar"
-					data={data}
-					options={{
-						animation: {
-							onComplete: () => {
-								delayed = true;
+			<div className="chart-container">
+				<div className="chart">
+					<Bar
+						type="bar"
+						data={data}
+						options={{
+							animation: {
+								onComplete: () => {
+									delayed = true;
+								},
+								delay: (context) => {
+									let delay = 0;
+									if (
+										context.type === 'data' &&
+										context.mode === 'default' &&
+										!delayed
+									) {
+										delay =
+											context.dataIndex * 300 + context.datasetIndex * 100;
+									}
+									return delay;
+								},
 							},
-							delay: (context) => {
-								let delay = 0;
-								if (
-									context.type === "data" &&
-									context.mode === "default" &&
-									!delayed
-								) {
-									delay = context.dataIndex * 300 + context.datasetIndex * 100;
-								}
-								return delay;
+							responsive: true,
+							interaction: {
+								mode: 'index',
+								intersect: false,
 							},
-						},
-						responsive: true,
-						interaction: {
-							mode: "index",
-							intersect: false,
-						},
-						plugins: {
-							title: {
-								display: true,
-								padding: 10,
-							},
-						},
-						scales: {
-							x: {
-								stacked: true,
-							},
-							y: {
-								type: "linear",
-								display: true,
-								position: "left",
-								stacked: true,
-								borderColor: "rgb(0, 0, 255)",
-								title: {
+
+							scales: {
+								x: {
+									stacked: true,
+								},
+								y: {
+									type: 'linear',
 									display: true,
-									text: "NPS Responses",
-									padding: 10,
+									position: 'left',
+									stacked: true,
+									borderColor: 'rgb(0, 0, 255)',
+									title: {
+										display: true,
+										text: 'NPS Responses',
+										padding: 0,
+									},
 								},
-							},
-							y1: {
-								type: "linear",
-								display: true,
-								position: "right",
-								title: {
+								y1: {
+									type: 'linear',
 									display: true,
-									text: "NPS Score",
-									padding: 10,
-								},
-								// grid line settings
-								grid: {
-									drawOnChartArea: false,
+									position: 'right',
+									title: {
+										display: true,
+										text: 'NPS Score',
+										padding: 0,
+									},
+									// grid line settings
+									grid: {
+										drawOnChartArea: false,
+									},
 								},
 							},
-						},
-					}}
-				/>
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);
