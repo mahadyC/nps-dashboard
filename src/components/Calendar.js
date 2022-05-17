@@ -15,7 +15,7 @@ export default function Calendar() {
 
 	useEffect(() => {
 		getAllResponses();
-	}, []);
+	},[]);
 
 	const getAllResponses = async () => {
 		const data = query(collectionGroup(db, "values2"));
@@ -88,7 +88,7 @@ export default function Calendar() {
 					</form>
 				</div>
 				<ScoreInfo filteredData={filteredData} />
-				<Chart />
+				<Chart filteredData={filteredData}/>
 				<Responses filteredData={filteredData} />
 			</div>
 		</div>
