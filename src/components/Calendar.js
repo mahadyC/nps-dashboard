@@ -18,7 +18,7 @@ export default function Calendar() {
 	},[]);
 
 	const getAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values2'));
+		const data = query(collectionGroup(db, 'values3'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -26,15 +26,15 @@ export default function Calendar() {
 		querySnapshot.forEach((doc) => {
 			allResults.push(doc.data());
 		});
-		allResults.sort((a, b) => b.date.yyyy - a.date.yyyy);
+		allResults.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds);
 		setInitialData(allResults);
 	};
 
 	let filterLastSixMonthsData = (initialData) => {
 		let startingDate = new Date();
-		startingDate.setMonth(startingDate.getMonth() - 6);
+		startingDate.setMonth(startingDate.getMonth() - 7);
 		let endingDate = new Date();
-
+		endingDate.setMonth(endingDate.getMonth() - 1);	
 		let startDate = {
 			yy: startingDate.getFullYear(),
 			mm: startingDate.getMonth(),
@@ -46,8 +46,8 @@ export default function Calendar() {
 			if (
 				initialData[i].date.yyyy === startDate.yy &&
 				initialData[i].date.mm === startDate.mm
-			)
-				sortIndexes.indexStart = initialData.indexOf(initialData[i]);
+				)
+			sortIndexes.indexStart = initialData.indexOf(initialData[i]);		
 		}
 		sortIndexes.indexEnd = initialData.findIndex(
 			(item) => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
@@ -63,29 +63,6 @@ export default function Calendar() {
 	return (
 		<div className="dashboard">
 			<div className="gridwrapper">
-				{/* <div className="calendar1">
-					<form>
-						<div>
-							<label htmlFor="from">
-								From:{" "}
-								<input
-									type="date"
-									id="fromDate"
-								/>
-							</label>
-							<label htmlFor="to">
-								To:{" "}
-								<input
-									type="date"
-									id="toDate"
-								/>
-							</label>
-							<button type="submit" className="show-button">
-								Show Data
-							</button>
-						</div>
-					</form>
-				</div> */}
 				<ScoreInfo filteredData={filteredData} />
 				<Chart filteredData={filteredData}/>
 				<Responses filteredData={filteredData} />
