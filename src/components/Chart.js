@@ -13,33 +13,7 @@ export default function ChartData(props) {
 	},[props.filteredData])
 	let sortableData = primaryData;
 
-	sortableData.sort((a, b) => (b.date.yyyy - a.date.yyyy) && (b.date.mm - a.date.mm) );
-
-
-	let chartData = [
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 0), response: 0, date: {yyyy: 2021, mm: 10}, score: 9 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 1), response: 1, date: {yyyy: 2021, mm: 10}, score: 9 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 2), response: 2, date: {yyyy: 2021, mm: 10}, score: 5 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 3), response: 3, date: {yyyy: 2021, mm: 10}, score: 7 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 4), response: 4, date: {yyyy: 2021, mm: 10}, score: 6 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 5), response: 5, date: {yyyy: 2021, mm: 10}, score: 9 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 6), response: 6, date: {yyyy: 2021, mm: 10}, score: 9 },
-		{ timestamp: new Date(2021, 10, 6, 11, 13, 30, 7), response: 7, date: {yyyy: 2021, mm: 10}, score: 9 },
-		{ timestamp: new Date(2021, 11, 6, 11, 13, 30, 6), response: 8, date: {yyyy: 2021, mm: 11}, score: 9 },
-		{ timestamp: new Date(2021, 11, 6, 11, 13, 30, 8), response: 9, date: {yyyy: 2021, mm: 11}, score: 9 },
-		{ timestamp: new Date(2022, 0, 6, 11, 13, 30, 8), response: 10, date: {yyyy: 2022, mm: 0}, score: 9 },
-		{ timestamp: new Date(2022, 0, 6, 11, 13, 30, 9), response: 11, date: {yyyy: 2022, mm: 0}, score: 8 },
-		{ timestamp: new Date(2022, 1, 6, 11, 13, 30, 10), response: 12, date: {yyyy: 2022, mm: 1}, score: 9 },
-		{ timestamp: new Date(2022, 2, 6, 11, 13, 30, 8), response: 13, date: {yyyy: 2022, mm: 2}, score: 9 },
-		{ timestamp: new Date(2022, 2, 6, 11, 13, 30, 9), response: 14, date: {yyyy: 2022, mm: 2}, score: 9 },
-		{ timestamp: new Date(2022, 2, 6, 11, 13, 30, 10), response: 15, date: {yyyy: 2022, mm: 2}, score: 9 },
-		{ timestamp: new Date(2022, 3, 6, 11, 13, 30, 8), response: 16, date: {yyyy: 2022, mm: 3}, score: 8 },
-		{ timestamp: new Date(2022, 3, 6, 11, 13, 30, 9), response: 17, date: {yyyy: 2022, mm: 3}, score: 9 },
-		{ timestamp: new Date(2022, 3, 6, 11, 13, 30, 11), response: 18, date: {yyyy: 2022, mm: 3}, score: 9 },
-
-	];
-
-	chartData.sort((a, b) => b.timestamp - a.timestamp); 
+	let chartData = sortableData;
 
 	let month6 = [];
 	let month5 = [];
