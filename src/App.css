@@ -223,7 +223,7 @@ canvas {
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
-	color: #949494;
+	color: #747373;
 }
 
 .response-comment {
@@ -306,6 +306,16 @@ canvas {
 	margin-top: 3rem;
 }
 
+.cards-header-embed {
+	font-family: Georama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	color: #024b4b;
+	display: flex;
+	flex-direction: row;
+}
+
 .embeddedcode-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -347,7 +357,7 @@ canvas {
 }
 
 .copy-button:hover {
-	background: #944bbb;
+	background: #026e6e;
 }
 
 .copy-button:active {

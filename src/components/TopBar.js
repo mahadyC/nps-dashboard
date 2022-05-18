@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container';
 
 export default function TopBar() {
 	return (
-
 		<Navbar expand="sm">
 			<Container>
 				<Navbar.Brand href="/">NPS</Navbar.Brand>
@@ -18,8 +17,8 @@ export default function TopBar() {
 						<LinkContainer to="/">
 							<Nav.Link>Dashboard</Nav.Link>
 						</LinkContainer>
-						<LinkContainer to="settings">
-							<Nav.Link>Settings</Nav.Link>
+						<LinkContainer to="embed-survey">
+							<Nav.Link>Embed survey</Nav.Link>
 						</LinkContainer>
 					</Nav>
 				</Navbar.Collapse>
