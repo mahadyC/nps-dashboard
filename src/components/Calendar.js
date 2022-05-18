@@ -45,22 +45,17 @@ export default function Calendar() {
 		startingDate.setMonth(startingDate.getMonth() - 7);
 		let endingDate = new Date();
 		endingDate.setMonth(endingDate.getMonth() - 1);	
-		let startDate = {
-			yy: startingDate.getFullYear(),
-			mm: startingDate.getMonth(),
-		};
-		let endDate = { yy: endingDate.getFullYear(), mm: endingDate.getMonth() };
 
 		let sortIndexes = { indexStart: 0, indexEnd: 0 };
 		for (let i = 0; i < initialData.length; i++) {
 			if (
-				initialData[i].date.yyyy === startDate.yy &&
-				initialData[i].date.mm === startDate.mm
+				initialData[i].date.yyyy === startingDate.getFullYear() &&
+				initialData[i].date.mm === startingDate.getMonth()
 				)
 			sortIndexes.indexStart = initialData.indexOf(initialData[i]);		
 		}
 		sortIndexes.indexEnd = initialData.findIndex(
-			(item) => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
+			(item) => item.date.yyyy === endingDate.getFullYear() && item.date.mm === endingDate.getMonth()
 		);
 		return initialData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
 	};

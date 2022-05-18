@@ -82,6 +82,16 @@ export default function ScoreInfo(props) {
 						<BsQuestionCircle />
 					</div>
 				</div>
+				{data.length > 0 ? (
+					<div className="card-header-dates">
+						{data[data.length - 1].date.mm + 1}.
+						{data[data.length - 1].date.yyyy}-{data[0].date.mm + 1}.
+						{data[0].date.yyyy}
+					</div>
+				) : (
+					""
+				)}
+
 				<Modal show={show} onHide={handleClose} centered>
 					<Modal.Header closeButton>
 						<Modal.Title>{npsCardTitle}</Modal.Title>
@@ -103,7 +113,6 @@ export default function ScoreInfo(props) {
 						</Button>
 					</Modal.Footer>
 				</Modal>
-				<div className="card-header-dates">01.01.2022-30.06.2022</div>
 			</div>
 			<div className="scoreItem">
 				<PieChart width={140} height={140}>

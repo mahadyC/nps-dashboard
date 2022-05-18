@@ -32,20 +32,7 @@ export default function ChartData(props) {
 	let month2 = [];
 	let month1 = [];
 
-	let month = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	];
+	let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 	let npsData = chartData;
 
@@ -328,6 +315,11 @@ export default function ChartData(props) {
 						<BsQuestionCircle />
 					</div>
 				</div>
+				{yearMonth6.mm !== 0  ? (
+					<div className="card-header-dates">{yearMonth1.mm}.{yearMonth1.yyyy}-{yearMonth6.mm + 1}.{yearMonth6.yyyy}</div>
+				) : (
+					""
+				)}
 				<Modal show={show} onHide={handleClose} centered>
 					<Modal.Header closeButton>
 						<Modal.Title>{barChartCardTitle}</Modal.Title>
@@ -357,8 +349,6 @@ export default function ChartData(props) {
 						</Button>
 					</Modal.Footer>
 				</Modal>
-
-				{/* <div className="card-header-dates">01.01.2022-30.06.2022</div> */}
 			</div>
 			<div className="chart-container">
 				<div className="chart">
