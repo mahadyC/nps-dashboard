@@ -22,7 +22,7 @@ export default function ChartData(props) {
 	let month2 = [];
 	let month1 = [];
 
-	let month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
 	let npsData = chartData;
 
@@ -281,7 +281,11 @@ export default function ChartData(props) {
 		<div className="chart-wrapper">
 			<div className="card-header-wrapper">
 				<div className="cards-header">NPS &amp; Responses Trends </div>
-				{/* <div className="card-header-dates">01.01.2022-30.06.2022</div> */}
+				{yearMonth6.mm !== 0  ? (
+					<div className="card-header-dates">{yearMonth1.mm}.{yearMonth1.yyyy}-{yearMonth6.mm + 1}.{yearMonth6.yyyy}</div>
+				) : (
+					""
+				)}
 			</div>
 			<div className="chart-container">
 				<div className="chart">

@@ -68,7 +68,14 @@ export default function ScoreInfo(props) {
 		<div className="nps-wrapper">
 			<div className="card-header-wrapper">
 				<div className="cards-header">Net Promoter Score (NPS) </div>
-				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+				{data.length > 0 ? (
+					<div className="card-header-dates">
+						{data[data.length - 1].date.mm + 1}.{data[data.length - 1].date.yyyy}-
+						{data[0].date.mm + 1}.{data[0].date.yyyy}
+					</div>
+				) : (
+					""
+				)}
 			</div>
 			<div className="scoreItem">
 				<PieChart width={140} height={140}>
