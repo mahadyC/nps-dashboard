@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import SmallScreen from '../components/SmallScreen';
 
-export default function Settings() {
+export default function Embed() {
 	const embedCode = `<div>
 	<iframe
 		title="NSP survey"
@@ -28,7 +28,7 @@ export default function Settings() {
 			) : (
 				<div className="nps-survey-wrapper">
 					<div className="card-header-wrapper">
-						<div className="cards-header">NPS Survey</div>
+						<div className="cards-header-embed">NPS Survey</div>
 					</div>
 					<div className="embeddedcode-wrapper">
 						<div className="guide-and-link-wrapper">
