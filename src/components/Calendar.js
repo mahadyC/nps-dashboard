@@ -8,10 +8,20 @@ import '../App.css';
 import ScoreInfo from '../components/ScoreInfo';
 import Responses from '../components/Responses';
 import Chart from '../components/Chart';
+import SmallScreen from './SmallScreen';
 
 export default function Calendar() {
 	let [filteredData, setFilteredData] = useState([]);
 	let [initialData, setInitialData] = useState([]);
+
+	const [width, setWidth] = useState(window.innerWidth);
+	const breakpoint = 750;
+
+	useEffect(() => {
+		const handleWindowResize = () => setWidth(window.innerWidth);
+		window.addEventListener('resize', handleWindowResize);
+		return () => window.removeEventListener('resize', () => handleWindowResize);
+	}, []);
 
 	useEffect(() => {
 		getAllResponses();
@@ -67,6 +77,7 @@ export default function Calendar() {
 				<Chart filteredData={filteredData}/>
 				<Responses filteredData={filteredData} />
 			</div>
+			{width < breakpoint && <SmallScreen />}
 		</div>
 	);
 }
