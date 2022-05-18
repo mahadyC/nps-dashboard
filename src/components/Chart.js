@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Modal, Button } from 'react-bootstrap';
 import { BsQuestionCircle } from 'react-icons/bs';
+import { Chart as ChartJS, registerables } from 'chart.js';
+
+ChartJS.register(...registerables);
 
 export default function ChartData(props) {
 	const [primaryData, setPrimaryData] = useState([]);
