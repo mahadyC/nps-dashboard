@@ -1,18 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import '../App.css';
+import { Modal, Button } from 'react-bootstrap';
+import { BsQuestionCircle } from 'react-icons/bs';
 
 export default function Responses(props) {
 	const [allResponses, setAllResponses] = useState([]);
 
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	const responsesCardTitle = 'Responses';
+	const surveyName = 'NPS Survey';
+
 	useEffect(() => {
-		setAllResponses(props.filteredData)
+		setAllResponses(props.filteredData);
 	}, [props.filteredData]);
 
 	return (
 		<div className="responses-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header">Responses</div>
-				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+				<div className="cards-header" onClick={handleShow}>
+					<div>{responsesCardTitle}</div>
+					<div className="question-icon">
+						<BsQuestionCircle />
+					</div>
+				</div>
+				<Modal show={show} onHide={handleClose} centered>
+					<Modal.Header closeButton>
+						<Modal.Title>{responsesCardTitle}</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<p>
+							Here are listed all the responses from "{surveyName}" from the
+							previous six (6) months in date order showing the most recent
+							responses on the top. Ongoing month's responses are not shown.
+						</p>
+						<p>
+							The responses list will be updated automatically as soon as the
+							calendar month has changed at midnight.
+						</p>
+						<p>
+							If you have just recently started gathering data via "{surveyName}
+							", you might see less than six months' responses.
+						</p>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+					</Modal.Footer>
+				</Modal>
+				<div className="card-header-dates">Jun 2022-Aug 2022</div>
 			</div>
 			<div className="responses-list">
 				{allResponses.map((answer, id) => {

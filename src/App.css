@@ -72,6 +72,13 @@ a.navbar-brand {
 	font-weight: 600;
 	font-size: 24px;
 	color: #024b4b;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+}
+
+.cards-header:hover {
+	color: #2e282a;
 }
 
 .card-header-dates {
@@ -82,45 +89,10 @@ a.navbar-brand {
 	color: #024b4b;
 }
 
-/******** Calendar ********/
-
-.calendar1 {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
-	background-color: #944bbb;
-	border-radius: 15px;
-	font-family: 'Rubik';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 18px;
-	text-transform: uppercase;
-	color: white;
-}
-
-input {
-	border-radius: 10px;
-	border: none;
-	padding: 0.1rem;
-}
-
-label {
-	margin: 0.5rem;
-}
-
-.show-button {
-	background: #3b3141;
-	border: none;
-	border-radius: 10px;
-	color: white;
-	text-transform: uppercase;
-	min-width: 135px;
-	height: 2.2rem;
-	font-family: 'Rubik';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 16px;
+.question-icon {
+	font-size: 1rem;
+	align-self: center;
+	margin-left: 0.5rem;
 }
 
 /******** Net Promoter Score ********/
@@ -210,13 +182,18 @@ label {
 }
 
 .chart {
-	width: 95%;
-	padding-left: 3rem;
-	padding-top: 10px;
+	width: 85%;
+	margin-left: 4rem;
 }
 
 canvas {
 	max-height: 550px;
+}
+
+.chart-container {
+	width: 100%;
+	height: 80%;
+	overflow: auto;
 }
 
 /******** Responses ********/
@@ -375,4 +352,57 @@ canvas {
 
 .copy-button:active {
 	background: #3b3141;
+}
+
+/******** Small screen component ********/
+
+.small-screen {
+	margin-top: 2rem;
+	padding: 1rem;
+	height: 80%;
+	width: 80%;
+	background-color: white;
+	border-radius: 15px;
+}
+
+/******** Too small screen ********/
+
+@media (max-width: 749px) {
+	.gridwrapper {
+		display: none;
+	}
+}
+
+/******** Tablet size screen ********/
+
+@media (min-width: 750px) and (max-width: 1200px) {
+	.background {
+		height: 180vh;
+	}
+	.gridwrapper {
+		display: grid;
+		grid-gap: 1.2rem;
+		grid-template-areas:
+			'b b b'
+			'b b b'
+			'c c c'
+			'c c c'
+			'c c c'
+			'c c c'
+			'd d d'
+			'd d d'
+			'd d d'
+			'd d d';
+		grid-template-rows: repeat(10, 12%);
+		grid-template-columns: repeat(1, 80%);
+		box-shadow: 0px 0px 40px 20px rgba(0, 0, 0, 0.14);
+		background-color: rgba(0, 0, 0, 0.12);
+		border-radius: 15px;
+		max-height: 110vh;
+		margin-top: 0.5rem;
+	}
+
+	.responses-list {
+		height: 82%;
+	}
 }
