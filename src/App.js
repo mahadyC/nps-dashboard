@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Layout from './pages/Layout';
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Settings from './pages/Settings.js';
+import Embed from './pages/Embed.js';
 
 function App() {
 	return (
@@ -11,7 +11,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path="settings" element={<Settings />} />
+					<Route path="embed-survey" element={<Embed />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
