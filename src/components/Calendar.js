@@ -9,18 +9,27 @@ import '../App.css';
 import ScoreInfo from '../components/ScoreInfo';
 import Responses from '../components/Responses';
 import Chart from '../components/Chart';
+import SmallScreen from './SmallScreen';
 
 export default function Calendar() {
 	let [filteredData, setFilteredData] = useState([]);
 	let [initialData, setInitialData] = useState([]);
 
+	const [width, setWidth] = useState(window.innerWidth);
+	const breakpoint = 750;
+
 	useEffect(() => {
-		getAllResponses();
+		const handleWindowResize = () => setWidth(window.innerWidth);
+		window.addEventListener('resize', handleWindowResize);
+		return () => window.removeEventListener('resize', () => handleWindowResize);
 	}, []);
 
+	useEffect(() => {
+		getAllResponses();
+	},[]);
 
 	const getAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values2'));
+		const data = query(collectionGroup(db, 'values3'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -28,31 +37,26 @@ export default function Calendar() {
 		querySnapshot.forEach((doc) => {
 			allResults.push(doc.data());
 		});
-		allResults.sort((a, b) => b.date.yyyy - a.date.yyyy);
+		allResults.sort((a, b) => b.timestamp.seconds - a.timestamp.seconds);
 		setInitialData(allResults);
 	};
 
 	let filterLastSixMonthsData = (initialData) => {
 		let startingDate = new Date();
-		startingDate.setMonth(startingDate.getMonth() - 6);
+		startingDate.setMonth(startingDate.getMonth() - 7);
 		let endingDate = new Date();
-
-		let startDate = {
-			yy: startingDate.getFullYear(),
-			mm: startingDate.getMonth(),
-		};
-		let endDate = { yy: endingDate.getFullYear(), mm: endingDate.getMonth() };
+		endingDate.setMonth(endingDate.getMonth() - 1);	
 
 		let sortIndexes = { indexStart: 0, indexEnd: 0 };
 		for (let i = 0; i < initialData.length; i++) {
 			if (
-				initialData[i].date.yyyy === startDate.yy &&
-				initialData[i].date.mm === startDate.mm
-			)
-				sortIndexes.indexStart = initialData.indexOf(initialData[i]);
+				initialData[i].date.yyyy === startingDate.getFullYear() &&
+				initialData[i].date.mm === startingDate.getMonth()
+				)
+			sortIndexes.indexStart = initialData.indexOf(initialData[i]);		
 		}
 		sortIndexes.indexEnd = initialData.findIndex(
-			(item) => item.date.yyyy === endDate.yy && item.date.mm === endDate.mm
+			(item) => item.date.yyyy === endingDate.getFullYear() && item.date.mm === endingDate.getMonth()
 		);
 		return initialData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
 	};
@@ -67,33 +71,11 @@ export default function Calendar() {
 	return (
 		<div className="dashboard">
 			<div className="gridwrapper">
-				{/* <div className="calendar1">
-					<form>
-						<div>
-							<label htmlFor="from">
-								From:{" "}
-								<input
-									type="date"
-									id="fromDate"
-								/>
-							</label>
-							<label htmlFor="to">
-								To:{" "}
-								<input
-									type="date"
-									id="toDate"
-								/>
-							</label>
-							<button type="submit" className="show-button">
-								Show Data
-							</button>
-						</div>
-					</form>
-				</div> */}
 				<ScoreInfo filteredData={filteredData} />
-				<Chart />
+				<Chart filteredData={filteredData}/>
 				<Responses filteredData={filteredData} />
 			</div>
+			{width < breakpoint && <SmallScreen />}
 		</div>
 	);
 }

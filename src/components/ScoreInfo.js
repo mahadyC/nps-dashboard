@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Label } from 'recharts';
 import '../App.css';
+import { Modal, Button } from 'react-bootstrap';
+import { BsQuestionCircle } from 'react-icons/bs';
 
 export default function ScoreInfo(props) {
 	const [npsScore, setNpsScore] = useState();
@@ -10,6 +12,13 @@ export default function ScoreInfo(props) {
 	const [total, setTotal] = useState();
 	const [npsdata, setNpsdata] = useState([]);
 	const [data, setData] = useState([]);
+
+	const [show, setShow] = useState(false);
+
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
+	const npsCardTitle = 'Net Promoter Score (NPS)';
 
 	useEffect(() => {
 		setData(props.filteredData);
@@ -67,8 +76,43 @@ export default function ScoreInfo(props) {
 	return (
 		<div className="nps-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header">Net Promoter Score (NPS) </div>
-				<div className="card-header-dates">01.01.2022-30.06.2022</div>
+				<div className="cards-header" onClick={handleShow}>
+					<div>{npsCardTitle}</div>
+					<div className="question-icon">
+						<BsQuestionCircle />
+					</div>
+				</div>
+				{data.length > 0 ? (
+					<div className="card-header-dates">
+						{data[data.length - 1].date.mm + 1}.
+						{data[data.length - 1].date.yyyy}-{data[0].date.mm + 1}.
+						{data[0].date.yyyy}
+					</div>
+				) : (
+					""
+				)}
+
+				<Modal show={show} onHide={handleClose} centered>
+					<Modal.Header closeButton>
+						<Modal.Title>{npsCardTitle}</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
+						<p>
+							The NPS for the previous six (6) months is shown in the center of
+							the pie chart. Note that the chart and the number of responses do
+							not include the ongoing month's survey responses.
+						</p>
+						<p>
+							The results will be updated automatically each month as soon as
+							the calendar month has changed at midnight.
+						</p>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={handleClose}>
+							Close
+						</Button>
+					</Modal.Footer>
+				</Modal>
 			</div>
 			<div className="scoreItem">
 				<PieChart width={140} height={140}>
