@@ -39,6 +39,7 @@ export default function Responses(props) {
 	}
 
 	const changeHandler = (e) => {
+		e.preventDefault();
 		setSortResponse(e.target.value)
 	}
 
