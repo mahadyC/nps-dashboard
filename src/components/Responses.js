@@ -9,7 +9,7 @@ export default function Responses(props) {
 	const [promoters, setPromoters] = useState([]);
 	const [passives, setPassives] = useState([]);
 	const [detractors, setDetractors] = useState([]);
-	const [sortResponse, setSortResponse] = useState("");
+	const [sortResponse, setSortResponse] = useState('');
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -27,20 +27,20 @@ export default function Responses(props) {
 		let passiveResponses = [];
 		let detractorResponses = [];
 
-		for(let i = 0; i < allData.length; i++){
-			if(allData[i].score >= 9) promoterRespones.push(allData[i])
-			else if(allData[i].score <= 6) detractorResponses.push(allData[i])
-			else passiveResponses.push(allData[i])
+		for (let i = 0; i < allData.length; i++) {
+			if (allData[i].score >= 9) promoterRespones.push(allData[i]);
+			else if (allData[i].score <= 6) detractorResponses.push(allData[i]);
+			else passiveResponses.push(allData[i]);
 		}
 
 		setPromoters(promoterRespones);
 		setPassives(passiveResponses);
 		setDetractors(detractorResponses);
-	}
+	};
 
 	const changeHandler = (e) => {
-		setSortResponse(e.target.value)
-	}
+		setSortResponse(e.target.value);
+	};
 
 	return (
 		<div className="responses-wrapper">
@@ -66,12 +66,12 @@ export default function Responses(props) {
 				</div>
 				{allResponses.length > 0 ? (
 					<div className="card-header-dates">
-						{allResponses[allResponses.length - 1].date.mm + 1}.
+						{allResponses[allResponses.length - 1].date.mm + 1}/
 						{allResponses[allResponses.length - 1].date.yyyy}-
-						{allResponses[0].date.mm + 1}.{allResponses[0].date.yyyy}
+						{allResponses[0].date.mm + 1}/{allResponses[0].date.yyyy}
 					</div>
 				) : (
-					""
+					''
 				)}
 
 				<Modal show={show} onHide={handleClose} centered>
@@ -82,7 +82,8 @@ export default function Responses(props) {
 						<p>
 							Here are listed all the responses from "{surveyName}" from the
 							previous six (6) months in date order showing the most recent
-							responses on the top. Ongoing month's responses are not shown.
+							responses on the top.{' '}
+							<strong>Ongoing month's responses are not shown.</strong>
 						</p>
 						<p>
 							The responses list will be updated automatically as soon as the
@@ -100,17 +101,19 @@ export default function Responses(props) {
 					</Modal.Footer>
 				</Modal>
 			</div>
+
 			<div className="responses-list">
-				{sortResponse === "" ? (
+				{sortResponse === '' ? (
 					<Response responseData={allResponses} />
-				) : sortResponse === "promoters" ? (
+				) : sortResponse === 'promoters' ? (
 					<Response responseData={promoters} />
-				) : sortResponse === "passives" ? (
+				) : sortResponse === 'passives' ? (
 					<Response responseData={passives} />
-				) : sortResponse === "detractors" ?(
+				) : sortResponse === 'detractors' ? (
 					<Response responseData={detractors} />
-				) : <div>No data available</div>
-				}
+				) : (
+					<div>No data available</div>
+				)}
 			</div>
 		</div>
 	);
