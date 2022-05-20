@@ -258,8 +258,12 @@ export default function ChartData(props) {
 						<BsQuestionCircle />
 					</div>
 				</div>
-				{(dataLastSixMonths.dataMonth6.mm !== 0 && primaryData.length > 0)  ? (
-					<div className="card-header-dates">{dataLastSixMonths.dataMonth1.mm}.{dataLastSixMonths.dataMonth1.yyyy}-{dataLastSixMonths.dataMonth6.mm + 1}.{dataLastSixMonths.dataMonth6.yyyy}</div>
+				{dataLastSixMonths.dataMonth6.mm !== 0 && primaryData.length > 0 ? (
+					<div className="card-header-dates">
+						{primaryData[primaryData.length - 1].date.mm + 1}.
+						{primaryData[primaryData.length - 1].date.yyyy}-
+						{primaryData[0].date.mm + 1}.{primaryData[0].date.yyyy}
+					</div>
 				) : (
 					""
 				)}
@@ -303,11 +307,11 @@ export default function ChartData(props) {
 								onComplete: () => {
 									delayed = true;
 								},
-								delay: (context) => {
+								delay: context => {
 									let delay = 0;
 									if (
-										context.type === 'data' &&
-										context.mode === 'default' &&
+										context.type === "data" &&
+										context.mode === "default" &&
 										!delayed
 									) {
 										delay =
@@ -318,7 +322,7 @@ export default function ChartData(props) {
 							},
 							responsive: true,
 							interaction: {
-								mode: 'index',
+								mode: "index",
 								intersect: false,
 							},
 
@@ -327,24 +331,24 @@ export default function ChartData(props) {
 									stacked: true,
 								},
 								y: {
-									type: 'linear',
+									type: "linear",
 									display: true,
-									position: 'left',
+									position: "left",
 									stacked: true,
-									borderColor: 'rgb(0, 0, 255)',
+									borderColor: "rgb(0, 0, 255)",
 									title: {
 										display: true,
-										text: 'NPS Responses',
+										text: "NPS Responses",
 										padding: 0,
 									},
 								},
 								y1: {
-									type: 'linear',
+									type: "linear",
 									display: true,
-									position: 'right',
+									position: "right",
 									title: {
 										display: true,
-										text: 'NPS Score',
+										text: "NPS Score",
 										padding: 0,
 									},
 									// grid line settings
