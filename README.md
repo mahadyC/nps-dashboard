@@ -1,17 +1,35 @@
 # PHZ Full Stack Standard Documentation V1.0.4
 
-Usage:
-git archive --format=tar HEAD | tar x -C ~/workspace/docker/project-name
-
 ## 1. Project Description
+
+- Business college Helsinki Fullstack Web Developer program's group project for PHZ Fullstack.
+
+- Net promoter score (NPS) is a widely used market research metric that typically takes the form of a single survey question asking respondents to rate the likelihood that they would recommend a company, product, or a service to a friend or colleague. NPS score is measured between 0 and 10. The NPS assumes a subdivision of respondents into "promoters" who provide ratings of 9 or 10, "passives" who provide ratings of 7 or 8, and "detractors" who provide ratings of 6 or lower. In this project we created an embeddable questionnaire form for PHZ Full Stack to measure their companys NPS.
 
 ### 1.1. Business Vision
 
+- To create simple, clear and easy to use dashboard for the HR-personel to monitor the NPS score.
+
 ### 1.2. Task Management
+
+- Slack
+- Teams
+- Trello
 
 ### 1.3. Personas
 
+- Chowdhury Mahady @mahadyC
+- Avadhanula Sravanthi @AsravanthiR
+- Jumppanen Noora @NooraJumppanen
+- Kantanen Heikki @HeikkiKantanen
+
 ### 1.4. Use Cases
+
+- Customer feedback is taken via a form where a simple question is asked. Customer will select a score depending upon their view and enter some comments. Comments are not obligatory. With the responses the percentage of Promoters, Detractors and Passifiers is shown on the dashboard. Net Promoter Score is calculated with the percentages. With the dashboard the HR-personel is able to see the monthly changes in NPS scores and feedback responses.
+
+- By default the dashboard shows the last 6 months data.
+
+- 'Net Promoter Score' is used to measure the satisfaction of the employees which helps to get an idea to improve their workplace satisfaction.
 
 ### 1.5. Non-Functional Requirements
 
@@ -21,53 +39,21 @@ https://wiki.phz.fi/NonFunctionalRequirements
 
 ### 2.1. Technologies
 
-All PHZ Full Stack -projects should encapsulate all environments by virtualization. Choose one of the following for your project:
+Languages,frameworks and technologies
 
-Dev
-
-- Vagrant/Virtualbox
-- Docker-compose/Docker
-
-CI
-
-- use dev -env on ci.in.phz.fi + Jenkins executors running Docker or Vagrant/Virtualbox.
-- Jenkins
-- (do not use Gitlab CI, or AWS Code Deploy or other CI unless you have a permission from management, can rationalize the exception to management and you know what you are doing)
-- Nothing should be run outside virtualization and everything should be wrapped inside the container/virtual machine
-- do not pin the projects down on any individual executor, but set up the builds so that they can be run on any executor machine
-
-Staging
-
-- Xen / PHZ Virtual Machines
-- PHZ Docker Swarm
-- PHZ Kubernetes
-
-Production
-
-- Xen / PHZ Virtual Machines + Baremetal Database db.in.phz.fi
-- PHZ Docker Swarm (internal projects only)
-- PHZ Kubernetes (internal projects only)
-- AWS (customer projects, but customer needs to pay for it and there needs to be a contract in place with the customer before you start to set up the AWS env)
-
-### 2.2. Naming, Terms and Key Concepts
-
-Environments and the configs should be named as
-
-- dev: docker-compose.yml (i.e. use the default names for dev env), but .env.dev
-- (ci): use the dev -env on CI
-- stg: docker-compose.stg.yml, .env.stg
-- prod: docker-compose.prod.yml, .env.prod
+- Javascript
+- React
+- CSS
+- Bootstrap
+- Firebase/Firestore
+- Cypress
+- Netlify
 
 ### 2.3. Coding Convention
 
 Directory structure
 
-- doc/ for UML documents
-- etc/ for nginx, ssh etc configs. Can be cp -pr etc/ /etc to the virtual machine during provisioning and matches the os directory structure
-- results/ test results
-- reports/ for e.g. code coverage reports
 - src/ for source code
-  \*\* Note! Source code should be placed under a single folder (src) that can be mounted over Docker -volume or Vagrant -shared folder inside the virtual machine so that node_modules or vendor directory are not on the shared folder. See https://wiki.phz.fi/Docker and https://wiki.phz.fi/Vagrant for further details how to circumvent the problems.
 - tests/ for tests
 
 ### 2.4. Development Guide
@@ -78,85 +64,35 @@ Add here examples and hints of good ways how to code the project. Convert the si
 
 ## 3. Development Environment
 
+- Visual Studio Code
+
 ### 3.1. Prerequisites
 
 ### 3.2. Start the Application
 
-./up.sh
-
-Tear down
-
-./down.sh
-
-Status
-
-./status.sh
+- I. Pull or clone the newest code from GitHub.
+- II. npm install
+- III. npm start
 
 ### 3.3. Access the Application
 
 ### 3.4. Run Tests
 
-#### 3.4.1.Backstopjs visual regression test
+#### 3.4.1. Cypress - e2e test
 
-Global installation (recommended)
+JavaScript testing automation solution (end-to-end testing framework) for used for web automation create web test automation scripts.
 
-$ npm install -g backstopjs
-
-Initializing your project
-
-$ backstop init
-
-Generating test bitmaps
-
-$ backstop test
-
-Approving changes
-
-$ backstop approve
+$ npm install Cypress --save-dev
 
 ### 3.5. IDE Setup and Debugging
 
 ### 3.6. Version Control
 
+- GitHub
+
 ### 3.7. Databases and Migrations
 
-### 3.8. Continuous Integration
-
-## 4. Staging Environment
-
-### 4.1. Access
-
-### 4.2. Deployment
-
-### 4.3. Smoke Tests
-
-#### 4.3.1. Automated Test Cases
-
-#### 4.3.2. Manual Test Cases
-
-### 4.4. Rollback
-
-### 4.5. Logs
-
-### 4.6. Monitoring
-
-## 5. Production Environment
-
-### 5.1. Access
-
-### 5.2. Deployment
-
-### 5.3. Smoke Tests
-
-#### 5.3.1. Automated Test Cases
-
-#### 5.3.2. Manual Test Cases
-
-### 5.4. Rollback
-
-### 5.5. Logs
-
-### 5.6. Monitoring
+- Firebase
 
 ## 6. Operating Manual
 
@@ -174,3 +110,4 @@ $ backstop approve
 
 Add here TODO and blockers that you have found related to upgrading to newer versions.
 List the library/framework/service, version, and then the error message.
+
