@@ -29,7 +29,7 @@ export default function Calendar() {
 	},[]);
 
 	const getAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values3'));
+		const data = query(collectionGroup(db, 'values-noora'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
@@ -41,24 +41,29 @@ export default function Calendar() {
 		setInitialData(allResults);
 	};
 
-	let filterLastSixMonthsData = (initialData) => {
-		let startingDate = new Date();
-		startingDate.setMonth(startingDate.getMonth() - 7);
-		let endingDate = new Date();
-		endingDate.setMonth(endingDate.getMonth() - 1);	
-
-		let sortIndexes = { indexStart: 0, indexEnd: 0 };
-		for (let i = 0; i < initialData.length; i++) {
-			if (
-				initialData[i].date.yyyy === startingDate.getFullYear() &&
-				initialData[i].date.mm === startingDate.getMonth()
-				)
-			sortIndexes.indexStart = initialData.indexOf(initialData[i]);		
-		}
-		sortIndexes.indexEnd = initialData.findIndex(
-			(item) => item.date.yyyy === endingDate.getFullYear() && item.date.mm === endingDate.getMonth()
-		);
-		return initialData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
+	let filterLastSixMonthsData = (primaryData) => {
+		if(primaryData.length !== 0){
+			let startingDate = new Date();
+			startingDate.setMonth(startingDate.getMonth() - 7);
+			let endingDate = new Date();
+			endingDate.setMonth(endingDate.getMonth() - 1);	
+	
+			if(primaryData[primaryData.length - 1].timestamp.seconds > Math.round(startingDate.getTime()/1000)){
+				return primaryData;
+			}	
+			let sortIndexes = { indexStart: 0, indexEnd: 0 };
+			for (let i = 0; i < primaryData.length; i++) {
+				if (
+					primaryData[i].date.yyyy === startingDate.getFullYear() &&
+					primaryData[i].date.mm === startingDate.getMonth()
+					)
+				sortIndexes.indexStart = primaryData.indexOf(primaryData[i]);		
+			}
+			sortIndexes.indexEnd = primaryData.findIndex(
+				(item) => item.date.yyyy === endingDate.getFullYear() && item.date.mm === endingDate.getMonth()
+			);
+			return primaryData.slice(sortIndexes.indexEnd, sortIndexes.indexStart);
+		}else return []
 	};
 
 

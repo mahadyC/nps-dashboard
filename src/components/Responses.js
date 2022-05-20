@@ -58,7 +58,7 @@ export default function Responses(props) {
 						id="type-of-response"
 						onChange={changeHandler}
 					>
-						<option value="">Sort</option>
+						<option value="">Show all</option>
 						<option value="promoters">Promoters</option>
 						<option value="passives">Passives</option>
 						<option value="detractors">Detractors</option>
