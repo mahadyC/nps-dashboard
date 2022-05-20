@@ -22,7 +22,20 @@ export default function ChartData(props) {
 		setPrimaryData(props.filteredData);
 	}, [props.filteredData]);
 
-	const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+	const month = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec',
+	];
 
 	const npsCalc = (npsCalcArr) => {
 		if (npsCalcArr.length === 0) return 'data missing to count nps score';
@@ -58,7 +71,7 @@ export default function ChartData(props) {
 	};
 
 	let dataLastSixMonths = {
-		dataMonth6 : {
+		dataMonth6: {
 			yyyy: 0,
 			mm: 0,
 			monthName: '',
@@ -68,9 +81,9 @@ export default function ChartData(props) {
 				detractors: 0,
 				npsScore: 0,
 			},
-			responses: []
+			responses: [],
 		},
-		dataMonth5 : {
+		dataMonth5: {
 			yyyy: 0,
 			mm: 0,
 			monthName: '',
@@ -80,9 +93,9 @@ export default function ChartData(props) {
 				detractors: 0,
 				npsScore: 0,
 			},
-			responses: []
+			responses: [],
 		},
-		dataMonth4 : {
+		dataMonth4: {
 			yyyy: 0,
 			mm: 0,
 			monthName: '',
@@ -92,9 +105,9 @@ export default function ChartData(props) {
 				detractors: 0,
 				npsScore: 0,
 			},
-			responses: []
+			responses: [],
 		},
-		dataMonth3 : {
+		dataMonth3: {
 			yyyy: 0,
 			mm: 0,
 			monthName: '',
@@ -104,9 +117,9 @@ export default function ChartData(props) {
 				detractors: 0,
 				npsScore: 0,
 			},
-			responses: []
+			responses: [],
 		},
-		dataMonth2 : {
+		dataMonth2: {
 			yyyy: 0,
 			mm: 0,
 			monthName: '',
@@ -116,9 +129,9 @@ export default function ChartData(props) {
 				detractors: 0,
 				npsScore: 0,
 			},
-			responses: []
+			responses: [],
 		},
-		dataMonth1 : {
+		dataMonth1: {
 			yyyy: 0,
 			mm: 0,
 			monthName: '',
@@ -128,8 +141,8 @@ export default function ChartData(props) {
 				detractors: 0,
 				npsScore: 0,
 			},
-			responses: []
-		}
+			responses: [],
+		},
 	};
 
 	const setDateDataLastSixMonths = () => {
@@ -139,8 +152,8 @@ export default function ChartData(props) {
 			value.yyyy = today.getFullYear();
 			value.mm = today.getMonth();
 			value.monthName = month[today.getMonth()];
-		})
-	}
+		});
+	};
 	setDateDataLastSixMonths();
 
 	const getSixMonthResponses = () => {
@@ -177,15 +190,14 @@ export default function ChartData(props) {
 				dataLastSixMonths.dataMonth1.responses.push(primaryData[b]);
 			}
 		}
-
-	}
+	};
 	getSixMonthResponses();
 
 	const calculateSixMonthNps = () => {
-		Object.entries(dataLastSixMonths).forEach(([key, value]) =>{
-			value.npsInfo = npsCalc(value.responses)
-		})
-	}
+		Object.entries(dataLastSixMonths).forEach(([key, value]) => {
+			value.npsInfo = npsCalc(value.responses);
+		});
+	};
 	calculateSixMonthNps();
 	const scores = [
 		dataLastSixMonths.dataMonth1.npsInfo,
@@ -260,12 +272,12 @@ export default function ChartData(props) {
 				</div>
 				{dataLastSixMonths.dataMonth6.mm !== 0 && primaryData.length > 0 ? (
 					<div className="card-header-dates">
-						{primaryData[primaryData.length - 1].date.mm + 1}.
+						{primaryData[primaryData.length - 1].date.mm + 1}/
 						{primaryData[primaryData.length - 1].date.yyyy}-
-						{primaryData[0].date.mm + 1}.{primaryData[0].date.yyyy}
+						{primaryData[0].date.mm + 1}/{primaryData[0].date.yyyy}
 					</div>
 				) : (
-					""
+					''
 				)}
 				<Modal show={show} onHide={handleClose} centered>
 					<Modal.Header closeButton>
@@ -282,8 +294,8 @@ export default function ChartData(props) {
 							month has changed at midnight.
 						</p>
 						<p>
-							Hover over the bars and you will see the NPS score and the number
-							of responses in each category.
+							Hover over or click the bars and you will see the NPS score and
+							the number of responses in each category.
 						</p>
 						<p>
 							If you have just recently started gathering data via "{surveyName}
@@ -307,11 +319,11 @@ export default function ChartData(props) {
 								onComplete: () => {
 									delayed = true;
 								},
-								delay: context => {
+								delay: (context) => {
 									let delay = 0;
 									if (
-										context.type === "data" &&
-										context.mode === "default" &&
+										context.type === 'data' &&
+										context.mode === 'default' &&
 										!delayed
 									) {
 										delay =
@@ -322,7 +334,7 @@ export default function ChartData(props) {
 							},
 							responsive: true,
 							interaction: {
-								mode: "index",
+								mode: 'index',
 								intersect: false,
 							},
 
@@ -331,24 +343,24 @@ export default function ChartData(props) {
 									stacked: true,
 								},
 								y: {
-									type: "linear",
+									type: 'linear',
 									display: true,
-									position: "left",
+									position: 'left',
 									stacked: true,
-									borderColor: "rgb(0, 0, 255)",
+									borderColor: 'rgb(0, 0, 255)',
 									title: {
 										display: true,
-										text: "NPS Responses",
+										text: 'NPS Responses',
 										padding: 0,
 									},
 								},
 								y1: {
-									type: "linear",
+									type: 'linear',
 									display: true,
-									position: "right",
+									position: 'right',
 									title: {
 										display: true,
-										text: "NPS Score",
+										text: 'NPS Score',
 										padding: 0,
 									},
 									// grid line settings
