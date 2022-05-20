@@ -19,6 +19,7 @@ export default function ScoreInfo(props) {
 	const handleShow = () => setShow(true);
 
 	const npsCardTitle = 'Net Promoter Score (NPS)';
+	const surveyName = 'NPS Survey';
 
 	useEffect(() => {
 		setData(props.filteredData);
@@ -84,12 +85,12 @@ export default function ScoreInfo(props) {
 				</div>
 				{data.length > 0 ? (
 					<div className="card-header-dates">
-						{data[data.length - 1].date.mm + 1}.
-						{data[data.length - 1].date.yyyy}-{data[0].date.mm + 1}.
+						{data[data.length - 1].date.mm + 1}/
+						{data[data.length - 1].date.yyyy}-{data[0].date.mm + 1}/
 						{data[0].date.yyyy}
 					</div>
 				) : (
-					""
+					''
 				)}
 
 				<Modal show={show} onHide={handleClose} centered>
@@ -98,13 +99,21 @@ export default function ScoreInfo(props) {
 					</Modal.Header>
 					<Modal.Body>
 						<p>
-							The NPS for the previous six (6) months is shown in the center of
-							the pie chart. Note that the chart and the number of responses do
-							not include the ongoing month's survey responses.
+							The NPS for the <strong>previous six (6) months</strong> is shown
+							in the center of the pie chart.
+						</p>
+						<p>
+							Note that the chart and the number of responses{' '}
+							<strong>do not include the ongoing month's</strong> survey data.
 						</p>
 						<p>
 							The results will be updated automatically each month as soon as
 							the calendar month has changed at midnight.
+						</p>
+						<p>
+							If you have just recently started gathering data via "{surveyName}
+							", you might see less than six months' NPS. Time period for the
+							NPS is in the header of the section.
 						</p>
 					</Modal.Body>
 					<Modal.Footer>
@@ -114,6 +123,7 @@ export default function ScoreInfo(props) {
 					</Modal.Footer>
 				</Modal>
 			</div>
+
 			<div className="scoreItem">
 				<PieChart width={140} height={140}>
 					<Pie
@@ -140,30 +150,31 @@ export default function ScoreInfo(props) {
 						/>
 					</Pie>
 				</PieChart>
-
-				<div className="nps-categories">
-					<div className="nps-one-category">
-						<div className="nps-category-circle-promoters"></div>
-						<div className="sum-number">{promoters}</div>
-						<div className="nps-category-name">Promoters</div>
+				{npsScore && (
+					<div className="nps-categories">
+						<div className="nps-one-category">
+							<div className="nps-category-circle-promoters"></div>
+							<div className="sum-number">{promoters}</div>
+							<div className="nps-category-name">Promoters</div>
+						</div>
+						<div className="nps-one-category">
+							<div className="nps-category-circle-passives"></div>
+							<div className="sum-number">{passives}</div>
+							<div className="nps-category-name">Passives</div>
+						</div>
+						<div className="nps-one-category">
+							<div className="nps-category-circle-detractors"></div>
+							<div className="sum-number">{detractors}</div>
+							<div className="nps-category-name">Detractors</div>
+						</div>
+						<div className="nps-category-line"></div>
+						<div className="nps-one-category">
+							<div className="nps-category-circle-total"></div>
+							<div className="sum-number">{total}</div>
+							<div className="nps-category-name">Total responses</div>
+						</div>
 					</div>
-					<div className="nps-one-category">
-						<div className="nps-category-circle-passives"></div>
-						<div className="sum-number">{passives}</div>
-						<div className="nps-category-name">Passives</div>
-					</div>
-					<div className="nps-one-category">
-						<div className="nps-category-circle-detractors"></div>
-						<div className="sum-number">{detractors}</div>
-						<div className="nps-category-name">Detractors</div>
-					</div>
-					<div className="nps-category-line"></div>
-					<div className="nps-one-category">
-						<div className="nps-category-circle-total"></div>
-						<div className="sum-number">{total}</div>
-						<div className="nps-category-name">Total responses</div>
-					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

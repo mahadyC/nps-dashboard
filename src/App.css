@@ -67,7 +67,7 @@ a.navbar-brand {
 }
 
 .cards-header {
-	font-family: Georama;
+	font-family: 'Georama';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 24px;
@@ -82,10 +82,10 @@ a.navbar-brand {
 }
 
 .card-header-dates {
-	font-family: Georama;
+	font-family: 'Georama';
 	font-style: normal;
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 18px;
 	color: #024b4b;
 }
 
@@ -101,6 +101,7 @@ a.navbar-brand {
 	grid-area: b;
 	background-color: white;
 	border-radius: 15px;
+	min-height: 200px;
 }
 
 .scoreItem {
@@ -194,9 +195,28 @@ canvas {
 	width: 100%;
 	height: 80%;
 	overflow: auto;
+	padding-top: 10px;
 }
 
 /******** Responses ********/
+
+#type-of-response {
+	padding: 4px;
+	border: 0.5px solid #6a6969;
+	border: none;
+	border-radius: 7px;
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	color: #2e282a;
+	box-shadow: 0px 0px 4px 0px gray;
+	background-color: white;
+}
+
+select:focus {
+	outline: none;
+}
 
 .responses-wrapper {
 	grid-area: d;
@@ -290,7 +310,7 @@ canvas {
 	padding-right: 0.5rem;
 }
 
-/******** Settings-page ********/
+/******** Embed survey-page ********/
 
 .settings-page {
 	display: flex;
@@ -373,6 +393,27 @@ canvas {
 	width: 80%;
 	background-color: white;
 	border-radius: 15px;
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	color: #2e282a;
+}
+
+/******** Not Found page ********/
+
+.not-found-page {
+	margin: 5rem;
+	padding: 2rem;
+	height: 20vh;
+	background-color: white;
+	border-radius: 15px;
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 22px;
+	color: #2e282a;
+	text-align: center;
 }
 
 /******** Too small screen ********/
@@ -410,6 +451,7 @@ canvas {
 		border-radius: 15px;
 		max-height: 110vh;
 		margin-top: 0.5rem;
+		width: 95vw;
 	}
 
 	.responses-list {
