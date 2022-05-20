@@ -21,22 +21,10 @@ export default function ChartData(props) {
 	useEffect(() => {
 		setPrimaryData(props.filteredData);
 	}, [props.filteredData]);
-	let sortableData = primaryData;
 
-	let chartData = sortableData;
+	const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-	let month6 = [];
-	let month5 = [];
-	let month4 = [];
-	let month3 = [];
-	let month2 = [];
-	let month1 = [];
-
-	let month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-	let npsData = chartData;
-
-	let npsCalc = (npsCalcArr) => {
+	const npsCalc = (npsCalcArr) => {
 		if (npsCalcArr.length === 0) return 'data missing to count nps score';
 		let npsScore;
 		let scores = [];
@@ -69,203 +57,158 @@ export default function ChartData(props) {
 		};
 	};
 
-	let yearMonth6 = {
-		yyyy: 0,
-		mm: 0,
-		monthName: '',
-		npsInfo: {
-			promoters: 0,
-			passives: 0,
-			detractors: 0,
-			npsScore: 0,
+	let dataLastSixMonths = {
+		dataMonth6 : {
+			yyyy: 0,
+			mm: 0,
+			monthName: '',
+			npsInfo: {
+				promoters: 0,
+				passives: 0,
+				detractors: 0,
+				npsScore: 0,
+			},
+			responses: []
 		},
-	};
-	let yearMonth5 = {
-		yyyy: 0,
-		mm: 0,
-		monthName: '',
-		npsInfo: {
-			promoters: 0,
-			passives: 0,
-			detractors: 0,
-			npsScore: 0,
+		dataMonth5 : {
+			yyyy: 0,
+			mm: 0,
+			monthName: '',
+			npsInfo: {
+				promoters: 0,
+				passives: 0,
+				detractors: 0,
+				npsScore: 0,
+			},
+			responses: []
 		},
-	};
-	let yearMonth4 = {
-		yyyy: 0,
-		mm: 0,
-		monthName: '',
-		npsInfo: {
-			promoters: 0,
-			passives: 0,
-			detractors: 0,
-			npsScore: 0,
+		dataMonth4 : {
+			yyyy: 0,
+			mm: 0,
+			monthName: '',
+			npsInfo: {
+				promoters: 0,
+				passives: 0,
+				detractors: 0,
+				npsScore: 0,
+			},
+			responses: []
 		},
-	};
-	let yearMonth3 = {
-		yyyy: 0,
-		mm: 0,
-		monthName: '',
-		npsInfo: {
-			promoters: 0,
-			passives: 0,
-			detractors: 0,
-			npsScore: 0,
+		dataMonth3 : {
+			yyyy: 0,
+			mm: 0,
+			monthName: '',
+			npsInfo: {
+				promoters: 0,
+				passives: 0,
+				detractors: 0,
+				npsScore: 0,
+			},
+			responses: []
 		},
-	};
-	let yearMonth2 = {
-		yyyy: 0,
-		mm: 0,
-		monthName: '',
-		promoters: 0,
-		npsInfo: {
-			passives: 0,
-			detractors: 0,
-			npsScore: 0,
+		dataMonth2 : {
+			yyyy: 0,
+			mm: 0,
+			monthName: '',
+			npsInfo: {
+				promoters: 0,
+				passives: 0,
+				detractors: 0,
+				npsScore: 0,
+			},
+			responses: []
 		},
-	};
-	let yearMonth1 = {
-		yyyy: 0,
-		mm: 0,
-		monthName: '',
-		npsInfo: {
-			promoters: 0,
-			passives: 0,
-			detractors: 0,
-			npsScore: 0,
-		},
-	};
-
-	let today = new Date();
-	today.setMonth(today.getMonth() - 1);
-	yearMonth6.yyyy = today.getFullYear();
-	yearMonth6.mm = today.getMonth();
-	yearMonth6.monthName = month[today.getMonth()];
-
-	today.setMonth(today.getMonth() - 1);
-	yearMonth5.yyyy = today.getFullYear();
-	yearMonth5.mm = today.getMonth();
-	yearMonth5.monthName = month[today.getMonth()];
-
-	today.setMonth(today.getMonth() - 1);
-	yearMonth4.yyyy = today.getFullYear();
-	yearMonth4.mm = today.getMonth();
-	yearMonth4.monthName = month[today.getMonth()];
-
-	today.setMonth(today.getMonth() - 1);
-	yearMonth3.yyyy = today.getFullYear();
-	yearMonth3.mm = today.getMonth();
-	yearMonth3.monthName = month[today.getMonth()];
-
-	today.setMonth(today.getMonth() - 1);
-	yearMonth2.yyyy = today.getFullYear();
-	yearMonth2.mm = today.getMonth();
-	yearMonth2.monthName = month[today.getMonth()];
-
-	today.setMonth(today.getMonth() - 1);
-	yearMonth1.yyyy = today.getFullYear();
-	yearMonth1.mm = today.getMonth();
-	yearMonth1.monthName = month[today.getMonth()];
-
-	for (let b = 0; b < npsData.length; b++) {
-		if (
-			npsData[b].date.yyyy === yearMonth6.yyyy &&
-			npsData[b].date.mm === yearMonth6.mm
-		) {
-			month6.push(npsData[b]);
-		} else if (
-			npsData[b].date.yyyy === yearMonth5.yyyy &&
-			npsData[b].date.mm === yearMonth5.mm
-		) {
-			month5.push(npsData[b]);
-		} else if (
-			npsData[b].date.yyyy === yearMonth4.yyyy &&
-			npsData[b].date.mm === yearMonth4.mm
-		) {
-			month4.push(npsData[b]);
-		} else if (
-			npsData[b].date.yyyy === yearMonth3.yyyy &&
-			npsData[b].date.mm === yearMonth3.mm
-		) {
-			month3.push(npsData[b]);
-		} else if (
-			npsData[b].date.yyyy === yearMonth2.yyyy &&
-			npsData[b].date.mm === yearMonth2.mm
-		) {
-			month2.push(npsData[b]);
-		} else if (
-			npsData[b].date.yyyy === yearMonth1.yyyy &&
-			npsData[b].date.mm === yearMonth1.mm
-		) {
-			month1.push(npsData[b]);
+		dataMonth1 : {
+			yyyy: 0,
+			mm: 0,
+			monthName: '',
+			npsInfo: {
+				promoters: 0,
+				passives: 0,
+				detractors: 0,
+				npsScore: 0,
+			},
+			responses: []
 		}
+	};
+
+	const setDateDataLastSixMonths = () => {
+		let today = new Date();
+		Object.entries(dataLastSixMonths).forEach(([key, value]) => {
+			today.setMonth(today.getMonth() - 1);
+			value.yyyy = today.getFullYear();
+			value.mm = today.getMonth();
+			value.monthName = month[today.getMonth()];
+		})
 	}
+	setDateDataLastSixMonths();
 
-	yearMonth6.npsInfo = npsCalc(month6);
-	yearMonth5.npsInfo = npsCalc(month5);
-	yearMonth4.npsInfo = npsCalc(month4);
-	yearMonth3.npsInfo = npsCalc(month3);
-	yearMonth2.npsInfo = npsCalc(month2);
-	yearMonth1.npsInfo = npsCalc(month1);
+	const getSixMonthResponses = () => {
+		for (let b = 0; b < primaryData.length; b++) {
+			if (
+				primaryData[b].date.yyyy === dataLastSixMonths.dataMonth6.yyyy &&
+				primaryData[b].date.mm === dataLastSixMonths.dataMonth6.mm
+			) {
+				dataLastSixMonths.dataMonth6.responses.push(primaryData[b]);
+			} else if (
+				primaryData[b].date.yyyy === dataLastSixMonths.dataMonth5.yyyy &&
+				primaryData[b].date.mm === dataLastSixMonths.dataMonth5.mm
+			) {
+				dataLastSixMonths.dataMonth5.responses.push(primaryData[b]);
+			} else if (
+				primaryData[b].date.yyyy === dataLastSixMonths.dataMonth4.yyyy &&
+				primaryData[b].date.mm === dataLastSixMonths.dataMonth4.mm
+			) {
+				dataLastSixMonths.dataMonth4.responses.push(primaryData[b]);
+			} else if (
+				primaryData[b].date.yyyy === dataLastSixMonths.dataMonth3.yyyy &&
+				primaryData[b].date.mm === dataLastSixMonths.dataMonth3.mm
+			) {
+				dataLastSixMonths.dataMonth3.responses.push(primaryData[b]);
+			} else if (
+				primaryData[b].date.yyyy === dataLastSixMonths.dataMonth2.yyyy &&
+				primaryData[b].date.mm === dataLastSixMonths.dataMonth2.mm
+			) {
+				dataLastSixMonths.dataMonth2.responses.push(primaryData[b]);
+			} else if (
+				primaryData[b].date.yyyy === dataLastSixMonths.dataMonth1.yyyy &&
+				primaryData[b].date.mm === dataLastSixMonths.dataMonth1.mm
+			) {
+				dataLastSixMonths.dataMonth1.responses.push(primaryData[b]);
+			}
+		}
 
+	}
+	getSixMonthResponses();
+
+	const calculateSixMonthNps = () => {
+		Object.entries(dataLastSixMonths).forEach(([key, value]) =>{
+			value.npsInfo = npsCalc(value.responses)
+		})
+	}
+	calculateSixMonthNps();
 	const scores = [
-		{
-			name: yearMonth1.monthName,
-			promoters: yearMonth1.npsInfo.promoters,
-			passive: yearMonth1.npsInfo.passives,
-			detractors: yearMonth1.npsInfo.detractors,
-			nps: yearMonth1.npsInfo.npsScore,
-		},
-		{
-			name: yearMonth2.monthName,
-			promoters: yearMonth2.npsInfo.promoters,
-			passive: yearMonth2.npsInfo.passives,
-			detractors: yearMonth2.npsInfo.detractors,
-			nps: yearMonth2.npsInfo.npsScore,
-		},
-		{
-			name: yearMonth3.monthName,
-			promoters: yearMonth3.npsInfo.promoters,
-			passive: yearMonth3.npsInfo.passives,
-			detractors: yearMonth3.npsInfo.detractors,
-			nps: yearMonth3.npsInfo.npsScore,
-		},
-		{
-			name: yearMonth4.monthName,
-			promoters: yearMonth4.npsInfo.promoters,
-			passive: yearMonth4.npsInfo.passives,
-			detractors: yearMonth4.npsInfo.detractors,
-			nps: yearMonth4.npsInfo.npsScore,
-		},
-		{
-			name: yearMonth5.monthName,
-			promoters: yearMonth5.npsInfo.promoters,
-			passive: yearMonth5.npsInfo.passives,
-			detractors: yearMonth5.npsInfo.detractors,
-			nps: yearMonth5.npsInfo.npsScore,
-		},
-		{
-			name: yearMonth6.monthName,
-			promoters: yearMonth6.npsInfo.promoters,
-			passive: yearMonth6.npsInfo.passives,
-			detractors: yearMonth6.npsInfo.detractors,
-			nps: yearMonth6.npsInfo.npsScore,
-		},
+		dataLastSixMonths.dataMonth1.npsInfo,
+		dataLastSixMonths.dataMonth2.npsInfo,
+		dataLastSixMonths.dataMonth3.npsInfo,
+		dataLastSixMonths.dataMonth4.npsInfo,
+		dataLastSixMonths.dataMonth5.npsInfo,
+		dataLastSixMonths.dataMonth6.npsInfo,
 	];
 
 	const data = {
 		labels: [
-			yearMonth1.monthName,
-			yearMonth2.monthName,
-			yearMonth3.monthName,
-			yearMonth4.monthName,
-			yearMonth5.monthName,
-			yearMonth6.monthName,
+			dataLastSixMonths.dataMonth1.monthName,
+			dataLastSixMonths.dataMonth2.monthName,
+			dataLastSixMonths.dataMonth3.monthName,
+			dataLastSixMonths.dataMonth4.monthName,
+			dataLastSixMonths.dataMonth5.monthName,
+			dataLastSixMonths.dataMonth6.monthName,
 		],
 		datasets: [
 			{
 				label: 'NPS',
-				data: scores.map((scores) => scores.nps),
+				data: scores.map((score) => score.npsScore),
 				borderColor: '#2e282a',
 				backgroundColor: '#2e282a',
 				yAxisID: 'y1',
@@ -273,7 +216,7 @@ export default function ChartData(props) {
 			},
 			{
 				label: 'Promoters',
-				data: scores.map((scores) => scores.promoters),
+				data: scores.map((score) => score.promoters),
 				borderColor: '#05A8AA',
 				backgroundColor: '#05A8AA',
 				yAxisID: 'y',
@@ -283,7 +226,7 @@ export default function ChartData(props) {
 			},
 			{
 				label: 'Passive',
-				data: scores.map((scores) => scores.passive),
+				data: scores.map((score) => score.passives),
 				borderColor: '#FFCB5C',
 				backgroundColor: '#FFCB5C',
 				yAxisID: 'y',
@@ -293,7 +236,7 @@ export default function ChartData(props) {
 			},
 			{
 				label: 'Detractors',
-				data: scores.map((scores) => scores.detractors),
+				data: scores.map((score) => score.detractors),
 				borderColor: '#F07F4E',
 				backgroundColor: '#F07F4E',
 				yAxisID: 'y',
@@ -315,8 +258,12 @@ export default function ChartData(props) {
 						<BsQuestionCircle />
 					</div>
 				</div>
-				{yearMonth6.mm !== 0  ? (
-					<div className="card-header-dates">{yearMonth1.mm}.{yearMonth1.yyyy}-{yearMonth6.mm + 1}.{yearMonth6.yyyy}</div>
+				{dataLastSixMonths.dataMonth6.mm !== 0 && primaryData.length > 0 ? (
+					<div className="card-header-dates">
+						{primaryData[primaryData.length - 1].date.mm + 1}.
+						{primaryData[primaryData.length - 1].date.yyyy}-
+						{primaryData[0].date.mm + 1}.{primaryData[0].date.yyyy}
+					</div>
 				) : (
 					""
 				)}
@@ -360,11 +307,11 @@ export default function ChartData(props) {
 								onComplete: () => {
 									delayed = true;
 								},
-								delay: (context) => {
+								delay: context => {
 									let delay = 0;
 									if (
-										context.type === 'data' &&
-										context.mode === 'default' &&
+										context.type === "data" &&
+										context.mode === "default" &&
 										!delayed
 									) {
 										delay =
@@ -375,7 +322,7 @@ export default function ChartData(props) {
 							},
 							responsive: true,
 							interaction: {
-								mode: 'index',
+								mode: "index",
 								intersect: false,
 							},
 
@@ -384,24 +331,24 @@ export default function ChartData(props) {
 									stacked: true,
 								},
 								y: {
-									type: 'linear',
+									type: "linear",
 									display: true,
-									position: 'left',
+									position: "left",
 									stacked: true,
-									borderColor: 'rgb(0, 0, 255)',
+									borderColor: "rgb(0, 0, 255)",
 									title: {
 										display: true,
-										text: 'NPS Responses',
+										text: "NPS Responses",
 										padding: 0,
 									},
 								},
 								y1: {
-									type: 'linear',
+									type: "linear",
 									display: true,
-									position: 'right',
+									position: "right",
 									title: {
 										display: true,
-										text: 'NPS Score',
+										text: "NPS Score",
 										padding: 0,
 									},
 									// grid line settings
