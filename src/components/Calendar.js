@@ -29,7 +29,7 @@ export default function Calendar() {
 	},[]);
 
 	const getAllResponses = async () => {
-		const data = query(collectionGroup(db, 'values-noora'));
+		const data = query(collectionGroup(db, 'values3'));
 		const querySnapshot = await getDocs(data);
 
 		const allResults = [];
