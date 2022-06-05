@@ -7,10 +7,9 @@ import Chart from './Chart';
 import SmallScreen from './SmallScreen';
 
 export default function Dashboard(props) {
-	let [filteredData, setFilteredData] = useState([]);
 	const [width, setWidth] = useState(window.innerWidth);
 	const breakpoint = 750;
-
+	let lastSixMonthsData = [];
 	useEffect(() => {
 		const handleWindowResize = () => setWidth(window.innerWidth);
 		window.addEventListener('resize', handleWindowResize);
@@ -48,17 +47,14 @@ export default function Dashboard(props) {
 		} else return [];
 	};
 
-	useEffect(() => {
-		let data = filterLastSixMonthsData(props.dataForDashboard);
-		setFilteredData(data);
-	}, []);
+	lastSixMonthsData = filterLastSixMonthsData(props.dataForDashboard);
 
 	return (
 		<div className="dashboard">
 			<div className="gridwrapper">
-				<ScoreInfo filteredData={filteredData} />
-				<Chart filteredData={filteredData} />
-				<Responses filteredData={filteredData} />
+				<ScoreInfo filteredData={lastSixMonthsData} />
+				<Chart filteredData={lastSixMonthsData} />
+				<Responses filteredData={lastSixMonthsData} />
 			</div>
 			{width < breakpoint && <SmallScreen />}
 		</div>
