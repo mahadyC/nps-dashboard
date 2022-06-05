@@ -8,8 +8,7 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 ChartJS.register(...registerables);
 
 export default function ChartData(props) {
-	const [primaryData, setPrimaryData] = useState([]);
-
+	const primaryData = props.filteredData;
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -17,10 +16,6 @@ export default function ChartData(props) {
 
 	const barChartCardTitle = 'NPS & Responses Trends';
 	const surveyName = 'NPS Survey';
-
-	useEffect(() => {
-		setPrimaryData(props.filteredData);
-	}, [props.filteredData]);
 
 	const month = [
 		'Jan',
