@@ -1,8 +1,8 @@
 
 import "../App.css";
 
-import Calendar from "../components/Calendar";
+import Dashboard from "../components/Dashboard";
 
 export default function Home() {
-	return <Calendar />;
+	return <Dashboard />;
 }

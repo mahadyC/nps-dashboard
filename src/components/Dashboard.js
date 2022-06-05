@@ -5,12 +5,12 @@ import { db } from '../firebase-config';
 import { collectionGroup, getDocs, query } from 'firebase/firestore';
 import '../App.css';
 
-import ScoreInfo from '../components/ScoreInfo';
-import Responses from '../components/Responses';
-import Chart from '../components/Chart';
+import ScoreInfo from './ScoreInfo';
+import Responses from './Responses';
+import Chart from './Chart';
 import SmallScreen from './SmallScreen';
 
-export default function Calendar() {
+export default function Dashboard() {
 	let [filteredData, setFilteredData] = useState([]);
 	let [initialData, setInitialData] = useState([]);
 
