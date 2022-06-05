@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Label } from 'recharts';
 import '../App.css';
 import { Modal, Button } from 'react-bootstrap';
 import { BsQuestionCircle } from 'react-icons/bs';
 
 export default function ScoreInfo(props) {
-	const [npsScore, setNpsScore] = useState();
-	const [promoters, setPromoters] = useState();
-	const [passives, setPassives] = useState();
-	const [detractors, setDetractors] = useState();
-	const [total, setTotal] = useState();
-	const [npsdata, setNpsdata] = useState([]);
-	const [data, setData] = useState([]);
-
+	let data = props.filteredData;
+	let npsInfo = {};
 	const [show, setShow] = useState(false);
 
 	const handleClose = () => setShow(false);
@@ -20,10 +14,6 @@ export default function ScoreInfo(props) {
 
 	const npsCardTitle = 'Net Promoter Score (NPS)';
 	const surveyName = 'NPS Survey';
-
-	useEffect(() => {
-		setData(props.filteredData);
-	}, [props.filteredData]);
 
 	let npsCalc = (npsCalcArr) => {
 		if (npsCalcArr.length === 0) return 'data missing to count nps score';
@@ -58,19 +48,12 @@ export default function ScoreInfo(props) {
 		};
 	};
 
-	useEffect(() => {
-		let val = npsCalc(data);
-		setNpsScore(val.npsScore);
-		setPromoters(val.promoters);
-		setDetractors(val.detractors);
-		setPassives(val.passives);
-		setTotal(val.totalNumOfFeedback);
-		setNpsdata([
-			{ name: 'promoters', value: val.promoters },
-			{ name: 'passives', value: val.passives },
-			{ name: 'detractors', value: val.detractors },
-		]);
-	}, [data]);
+	npsInfo = npsCalc(data);
+	let pieData = [
+		{ name: 'promoters', value: npsInfo.promoters },
+		{ name: 'passives', value: npsInfo.passives },
+		{ name: 'detractors', value: npsInfo.detractors }
+	];
 
 	const COLORS = ['#05A8AA', '#FFCB5C', '#F07F4E'];
 
@@ -127,13 +110,13 @@ export default function ScoreInfo(props) {
 			<div className="scoreItem">
 				<PieChart width={140} height={140}>
 					<Pie
-						data={npsdata}
+						data={pieData}
 						innerRadius="65%"
 						outerRadius="100%"
 						paddingAngle={3}
 						dataKey="value"
 					>
-						{npsdata.map((entry, index) => (
+						{pieData.map((entry, index) => (
 							<Cell
 								key={`cell-${index}`}
 								fill={COLORS[index % COLORS.length]}
@@ -141,7 +124,7 @@ export default function ScoreInfo(props) {
 						))}
 
 						<Label
-							value={npsScore}
+							value={npsInfo.npsScore}
 							position="center"
 							fontFamily="Rubik"
 							fontWeight={500}
@@ -150,27 +133,27 @@ export default function ScoreInfo(props) {
 						/>
 					</Pie>
 				</PieChart>
-				{npsScore && (
+				{npsInfo.npsScore && (
 					<div className="nps-categories">
 						<div className="nps-one-category">
 							<div className="nps-category-circle-promoters"></div>
-							<div className="sum-number">{promoters}</div>
+							<div className="sum-number">{npsInfo.promoters}</div>
 							<div className="nps-category-name">Promoters</div>
 						</div>
 						<div className="nps-one-category">
 							<div className="nps-category-circle-passives"></div>
-							<div className="sum-number">{passives}</div>
+							<div className="sum-number">{npsInfo.passives}</div>
 							<div className="nps-category-name">Passives</div>
 						</div>
 						<div className="nps-one-category">
 							<div className="nps-category-circle-detractors"></div>
-							<div className="sum-number">{detractors}</div>
+							<div className="sum-number">{npsInfo.detractors}</div>
 							<div className="nps-category-name">Detractors</div>
 						</div>
 						<div className="nps-category-line"></div>
 						<div className="nps-one-category">
 							<div className="nps-category-circle-total"></div>
-							<div className="sum-number">{total}</div>
+							<div className="sum-number">{npsInfo.totalNumOfFeedback}</div>
 							<div className="nps-category-name">Total responses</div>
 						</div>
 					</div>
