@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { Modal, Button } from 'react-bootstrap';
 import { BsQuestionCircle } from 'react-icons/bs';
