@@ -1,10 +1,9 @@
 import '../App.css';
 import { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Modal, Button } from 'react-bootstrap';
 import { BsQuestionCircle } from 'react-icons/bs';
 import { Chart as ChartJS, registerables } from 'chart.js';
-
+import InfoModal from './InfoModal';
 ChartJS.register(...registerables);
 
 export default function ChartData(props) {
@@ -16,6 +15,27 @@ export default function ChartData(props) {
 
 	const barChartCardTitle = 'NPS & Responses Trends';
 	const surveyName = 'NPS Survey';
+	const barChartCardBody = (
+		<div>
+			<p>
+				This chart shows you the NPS trend and the trend of responses for the
+				previous six (6) months. The chart does not show the ongoing month's
+				results.
+			</p>
+			<p>
+				The chart will be updated automatically as soon as the calendar month
+				has changed at midnight.
+			</p>
+			<p>
+				Hover over or click the bars and you will see the NPS score and the
+				number of responses in each category.
+			</p>
+			<p>
+				If you have just recently started gathering data via "{surveyName}
+				", you might see less than six months' results.
+			</p>
+		</div>
+	);
 
 	const month = [
 		'Jan',
@@ -274,35 +294,7 @@ export default function ChartData(props) {
 				) : (
 					''
 				)}
-				<Modal show={show} onHide={handleClose} centered>
-					<Modal.Header closeButton>
-						<Modal.Title>{barChartCardTitle}</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<p>
-							This chart shows you the NPS trend and the trend of responses for
-							the previous six (6) months. The chart does not show the ongoing
-							month's results.
-						</p>
-						<p>
-							The chart will be updated automatically as soon as the calendar
-							month has changed at midnight.
-						</p>
-						<p>
-							Hover over or click the bars and you will see the NPS score and
-							the number of responses in each category.
-						</p>
-						<p>
-							If you have just recently started gathering data via "{surveyName}
-							", you might see less than six months' results.
-						</p>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant="secondary" onClick={handleClose}>
-							Close
-						</Button>
-					</Modal.Footer>
-				</Modal>
+				<InfoModal modalTitle={barChartCardTitle} modalBody={barChartCardBody} show={show} handleClose={handleClose}/>
 			</div>
 			<div className="chart-container">
 				<div className="chart">

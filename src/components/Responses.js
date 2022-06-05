@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
-import { Modal, Button } from 'react-bootstrap';
 import { BsQuestionCircle } from 'react-icons/bs';
 import Response from './Response';
+import InfoModal from './InfoModal';
 
 export default function Responses(props) {
 	const allResponses = props.filteredData;
@@ -14,6 +14,23 @@ export default function Responses(props) {
 
 	const responsesCardTitle = 'Responses';
 	const surveyName = 'NPS Survey';
+	const responsesCardBody = (
+		<div>
+			<p>
+				Here are listed all the responses from "{surveyName}" from the previous
+				six (6) months in date order showing the most recent responses on the
+				top. <strong>Ongoing month's responses are not shown.</strong>
+			</p>
+			<p>
+				The responses list will be updated automatically as soon as the calendar
+				month has changed at midnight.
+			</p>
+			<p>
+				If you have just recently started gathering data via "{surveyName}
+				", you might see less than six months' responses.
+			</p>
+		</div>
+	);
 
 
 	const getRenderData = (allData) => {
@@ -40,7 +57,7 @@ export default function Responses(props) {
 	return (
 		<div className="responses-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header" onClick={handleShow}>
+				<div className="cards-header" onClick={handleShow} >
 					<div>{responsesCardTitle}</div>
 					<div className="question-icon">
 						<BsQuestionCircle />
@@ -68,33 +85,7 @@ export default function Responses(props) {
 				) : (
 					''
 				)}
-
-				<Modal show={show} onHide={handleClose} centered>
-					<Modal.Header closeButton>
-						<Modal.Title>{responsesCardTitle}</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<p>
-							Here are listed all the responses from "{surveyName}" from the
-							previous six (6) months in date order showing the most recent
-							responses on the top.{' '}
-							<strong>Ongoing month's responses are not shown.</strong>
-						</p>
-						<p>
-							The responses list will be updated automatically as soon as the
-							calendar month has changed at midnight.
-						</p>
-						<p>
-							If you have just recently started gathering data via "{surveyName}
-							", you might see less than six months' responses.
-						</p>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant="secondary" onClick={handleClose}>
-							Close
-						</Button>
-					</Modal.Footer>
-				</Modal>
+				<InfoModal modalTitle={responsesCardTitle} modalBody={responsesCardBody} show={show} handleClose={handleClose}/>
 			</div>
 
 			<div className="responses-list">

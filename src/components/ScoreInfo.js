@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Label } from 'recharts';
 import '../App.css';
-import { Modal, Button } from 'react-bootstrap';
 import { BsQuestionCircle } from 'react-icons/bs';
-
+import InfoModal from './InfoModal';
 export default function ScoreInfo(props) {
 	let data = props.filteredData;
 	let npsInfo = {};
@@ -14,6 +13,27 @@ export default function ScoreInfo(props) {
 
 	const npsCardTitle = 'Net Promoter Score (NPS)';
 	const surveyName = 'NPS Survey';
+	const npsCardBody = (
+		<div>
+			<p>
+				The NPS for the <strong>previous six (6) months</strong> is shown in the
+				center of the pie chart.
+			</p>
+			<p>
+				Note that the chart and the number of responses{" "}
+				<strong>do not include the ongoing month's</strong> survey data.
+			</p>
+			<p>
+				The results will be updated automatically each month as soon as the
+				calendar month has changed at midnight.
+			</p>
+			<p>
+				If you have just recently started gathering data via "{surveyName}
+				", you might see less than six months' NPS. Time period for the NPS is
+				in the header of the section.
+			</p>
+		</div>
+	);
 
 	let npsCalc = (npsCalcArr) => {
 		if (npsCalcArr.length === 0) return 'data missing to count nps score';
@@ -75,36 +95,7 @@ export default function ScoreInfo(props) {
 				) : (
 					''
 				)}
-
-				<Modal show={show} onHide={handleClose} centered>
-					<Modal.Header closeButton>
-						<Modal.Title>{npsCardTitle}</Modal.Title>
-					</Modal.Header>
-					<Modal.Body>
-						<p>
-							The NPS for the <strong>previous six (6) months</strong> is shown
-							in the center of the pie chart.
-						</p>
-						<p>
-							Note that the chart and the number of responses{' '}
-							<strong>do not include the ongoing month's</strong> survey data.
-						</p>
-						<p>
-							The results will be updated automatically each month as soon as
-							the calendar month has changed at midnight.
-						</p>
-						<p>
-							If you have just recently started gathering data via "{surveyName}
-							", you might see less than six months' NPS. Time period for the
-							NPS is in the header of the section.
-						</p>
-					</Modal.Body>
-					<Modal.Footer>
-						<Button variant="secondary" onClick={handleClose}>
-							Close
-						</Button>
-					</Modal.Footer>
-				</Modal>
+				<InfoModal modalTitle={npsCardTitle} modalBody={npsCardBody} show={show} handleClose={handleClose}/>	
 			</div>
 
 			<div className="scoreItem">
