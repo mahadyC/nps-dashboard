@@ -5,10 +5,8 @@ import { BsQuestionCircle } from 'react-icons/bs';
 import Response from './Response';
 
 export default function Responses(props) {
-	const [allResponses, setAllResponses] = useState([]);
-	const [promoters, setPromoters] = useState([]);
-	const [passives, setPassives] = useState([]);
-	const [detractors, setDetractors] = useState([]);
+	const allResponses = props.filteredData;
+	let filteredResponses = {};
 	const [sortResponse, setSortResponse] = useState('');
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -17,26 +15,22 @@ export default function Responses(props) {
 	const responsesCardTitle = 'Responses';
 	const surveyName = 'NPS Survey';
 
-	useEffect(() => {
-		setAllResponses(props.filteredData);
-		getRenderData(props.filteredData);
-	}, [props.filteredData]);
 
 	const getRenderData = (allData) => {
-		let promoterRespones = [];
+		let promoterResponses = [];
 		let passiveResponses = [];
 		let detractorResponses = [];
 
 		for (let i = 0; i < allData.length; i++) {
-			if (allData[i].score >= 9) promoterRespones.push(allData[i]);
+			if (allData[i].score >= 9) promoterResponses.push(allData[i]);
 			else if (allData[i].score <= 6) detractorResponses.push(allData[i]);
 			else passiveResponses.push(allData[i]);
 		}
 
-		setPromoters(promoterRespones);
-		setPassives(passiveResponses);
-		setDetractors(detractorResponses);
+		return {promoterResponses, detractorResponses, passiveResponses}
 	};
+	
+	filteredResponses = getRenderData(allResponses)
 
 	const changeHandler = (e) => {
 		e.preventDefault();
@@ -107,11 +101,11 @@ export default function Responses(props) {
 				{sortResponse === '' ? (
 					<Response responseData={allResponses} />
 				) : sortResponse === 'promoters' ? (
-					<Response responseData={promoters} />
+					<Response responseData={filteredResponses.promoterResponses} />
 				) : sortResponse === 'passives' ? (
-					<Response responseData={passives} />
+					<Response responseData={filteredResponses.passiveResponses} />
 				) : sortResponse === 'detractors' ? (
-					<Response responseData={detractors} />
+					<Response responseData={filteredResponses.detractorResponses} />
 				) : (
 					<div>No data available</div>
 				)}
