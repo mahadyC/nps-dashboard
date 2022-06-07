@@ -8,11 +8,6 @@ ChartJS.register(...registerables);
 
 export default function ChartData(props) {
 	const primaryData = props.filteredData;
-	const [show, setShow] = useState(false);
-
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
 	const barChartCardTitle = 'NPS & Responses Trends';
 	const surveyName = 'NPS Survey';
 	const barChartCardBody = (
@@ -279,7 +274,7 @@ export default function ChartData(props) {
 	return (
 		<div className="chart-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header" onClick={handleShow}>
+				<div className="cards-header" onClick={props.handleShow}>
 					<div>{barChartCardTitle}</div>
 					<div className="question-icon">
 						<BsQuestionCircle />
@@ -294,7 +289,7 @@ export default function ChartData(props) {
 				) : (
 					''
 				)}
-				<InfoModal modalTitle={barChartCardTitle} modalBody={barChartCardBody} show={show} handleClose={handleClose}/>
+				<InfoModal modalTitle={barChartCardTitle} modalBody={barChartCardBody} show={props.show} handleClose={props.handleClose}/>
 			</div>
 			<div className="chart-container">
 				<div className="chart">

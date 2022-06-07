@@ -6,11 +6,6 @@ import InfoModal from './InfoModal';
 export default function ScoreInfo(props) {
 	let data = props.filteredData;
 	let npsInfo = {};
-	const [show, setShow] = useState(false);
-
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
 	const npsCardTitle = 'Net Promoter Score (NPS)';
 	const surveyName = 'NPS Survey';
 	const npsCardBody = (
@@ -80,7 +75,7 @@ export default function ScoreInfo(props) {
 	return (
 		<div className="nps-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header" onClick={handleShow}>
+				<div className="cards-header" onClick={props.handleShow}>
 					<div>{npsCardTitle}</div>
 					<div className="question-icon">
 						<BsQuestionCircle />
@@ -95,7 +90,7 @@ export default function ScoreInfo(props) {
 				) : (
 					''
 				)}
-				<InfoModal modalTitle={npsCardTitle} modalBody={npsCardBody} show={show} handleClose={handleClose}/>	
+				<InfoModal modalTitle={npsCardTitle} modalBody={npsCardBody} show={props.show} handleClose={props.handleClose}/>	
 			</div>
 
 			<div className="scoreItem">

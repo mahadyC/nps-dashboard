@@ -8,10 +8,6 @@ export default function Responses(props) {
 	const allResponses = props.filteredData;
 	let filteredResponses = {};
 	const [sortResponse, setSortResponse] = useState('');
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
-
 	const responsesCardTitle = 'Responses';
 	const surveyName = 'NPS Survey';
 	const responsesCardBody = (
@@ -57,7 +53,7 @@ export default function Responses(props) {
 	return (
 		<div className="responses-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header" onClick={handleShow} >
+				<div className="cards-header" onClick={props.handleShow} >
 					<div>{responsesCardTitle}</div>
 					<div className="question-icon">
 						<BsQuestionCircle />
@@ -85,7 +81,7 @@ export default function Responses(props) {
 				) : (
 					''
 				)}
-				<InfoModal modalTitle={responsesCardTitle} modalBody={responsesCardBody} show={show} handleClose={handleClose}/>
+				<InfoModal modalTitle={responsesCardTitle} modalBody={responsesCardBody} show={props.show} handleClose={props.handleClose}/>
 			</div>
 
 			<div className="responses-list">

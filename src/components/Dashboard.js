@@ -3,8 +3,9 @@ import '../App.css';
 
 import ScoreInfo from './ScoreInfo';
 import Responses from './Responses';
-import Chart from './Chart';
+import ChartData from './ChartData';
 import SmallScreen from './SmallScreen';
+import InfoModalsStateHolder from './InfoModalsStateHolder';
 
 export default function Dashboard(props) {
 	const [width, setWidth] = useState(window.innerWidth);
@@ -51,11 +52,7 @@ export default function Dashboard(props) {
 
 	return (
 		<div className="dashboard">
-			<div className="gridwrapper">
-				<ScoreInfo filteredData={lastSixMonthsData} />
-				<Chart filteredData={lastSixMonthsData} />
-				<Responses filteredData={lastSixMonthsData} />
-			</div>
+			<InfoModalsStateHolder filteredData={lastSixMonthsData} />
 			{width < breakpoint && <SmallScreen />}
 		</div>
 	);
