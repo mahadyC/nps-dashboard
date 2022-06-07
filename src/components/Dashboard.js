@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
-
-import ScoreInfo from './ScoreInfo';
-import Responses from './Responses';
-import ChartData from './ChartData';
 import SmallScreen from './SmallScreen';
 import InfoModalsStateHolder from './InfoModalsStateHolder';
 
