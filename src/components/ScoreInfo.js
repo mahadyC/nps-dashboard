@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Label } from 'recharts';
 import '../App.css';
 import { BsQuestionCircle } from 'react-icons/bs';
