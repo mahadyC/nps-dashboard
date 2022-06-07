@@ -8,6 +8,7 @@ ChartJS.register(...registerables);
 
 export default function ChartData(props) {
 	const primaryData = props.filteredData;
+	const toggleModal = () => props.toggleChartDataInfoModal(props.show);
 	const barChartCardTitle = 'NPS & Responses Trends';
 	const surveyName = 'NPS Survey';
 	const barChartCardBody = (
@@ -274,7 +275,7 @@ export default function ChartData(props) {
 	return (
 		<div className="chart-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header" onClick={props.handleShow}>
+				<div className="cards-header" onClick={toggleModal}>
 					<div>{barChartCardTitle}</div>
 					<div className="question-icon">
 						<BsQuestionCircle />
@@ -289,7 +290,7 @@ export default function ChartData(props) {
 				) : (
 					''
 				)}
-				<InfoModal modalTitle={barChartCardTitle} modalBody={barChartCardBody} show={props.show} handleClose={props.handleClose}/>
+				<InfoModal modalTitle={barChartCardTitle} modalBody={barChartCardBody} show={props.show} handleClose={toggleModal}/>
 			</div>
 			<div className="chart-container">
 				<div className="chart">

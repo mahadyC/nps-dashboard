@@ -9,18 +9,18 @@ export default function InfoModalsStateHolder(props) {
         showScoreInfoModal ? setShowScoreInfoModal(false) : setShowScoreInfoModal(true);
     }
     const [showChartDataInfoModal, setShowChartDataInfoModal] = useState(false);
-	const handleCloseChartDataInfoModal = () => setShowChartDataInfoModal(false);
-	const handleShowChartDataInfoModal = () => setShowChartDataInfoModal(true);
-
+    const toggleChartDataInfoModal = (showChartDataInfoModal) => {
+        showChartDataInfoModal ? setShowChartDataInfoModal(false) : setShowChartDataInfoModal(true);
+    }
     const [showResponsesInfoModal, setShowResponsesInfoModal] = useState(false);
-	const handleCloseResponsesInfoModal = () => setShowResponsesInfoModal(false);
-	const handleShowResponsesInfoModal = () => setShowResponsesInfoModal(true);
-   
+    const toggleResponsesInfoModal = (showResponsesInfoModal) => {
+        showResponsesInfoModal ? setShowResponsesInfoModal(false) : setShowResponsesInfoModal(true);
+    }
     return (
 		<div className="gridwrapper">
             <ScoreInfo filteredData={props.filteredData} show={showScoreInfoModal} toggleScoreInfoModal={toggleScoreInfoModal}/>
-            <ChartData filteredData={props.filteredData} show={showChartDataInfoModal} handleClose={handleCloseChartDataInfoModal} handleShow={handleShowChartDataInfoModal}/>
-            <Responses filteredData={props.filteredData} show={showResponsesInfoModal} handleClose={handleCloseResponsesInfoModal} handleShow={handleShowResponsesInfoModal} />
+            <ChartData filteredData={props.filteredData} show={showChartDataInfoModal} toggleChartDataInfoModal={toggleChartDataInfoModal}/>
+            <Responses filteredData={props.filteredData} show={showResponsesInfoModal} toggleResponsesInfoModal={toggleResponsesInfoModal}/>
 		</div>
 	);
 }
