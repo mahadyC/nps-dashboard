@@ -5,6 +5,7 @@ import { BsQuestionCircle } from 'react-icons/bs';
 import InfoModal from './InfoModal';
 export default function ScoreInfo(props) {
 	let data = props.filteredData;
+	const toggleModal = () => props.toggleScoreInfoModal(props.show);
 	let npsInfo = {};
 	const npsCardTitle = 'Net Promoter Score (NPS)';
 	const surveyName = 'NPS Survey';
@@ -75,7 +76,7 @@ export default function ScoreInfo(props) {
 	return (
 		<div className="nps-wrapper">
 			<div className="card-header-wrapper">
-				<div className="cards-header" onClick={props.handleShow}>
+				<div className="cards-header" onClick={toggleModal}>
 					<div>{npsCardTitle}</div>
 					<div className="question-icon">
 						<BsQuestionCircle />
@@ -90,7 +91,7 @@ export default function ScoreInfo(props) {
 				) : (
 					''
 				)}
-				<InfoModal modalTitle={npsCardTitle} modalBody={npsCardBody} show={props.show} handleClose={props.handleClose}/>	
+				<InfoModal modalTitle={npsCardTitle} modalBody={npsCardBody} show={props.show} handleClose={toggleModal}/>	
 			</div>
 
 			<div className="scoreItem">
